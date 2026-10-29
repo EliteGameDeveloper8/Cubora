@@ -15,7 +15,7 @@ small{opacity:.7}ul{margin:0;padding-left:18px;font-size:14px}
 #cross{position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px;background:linear-gradient(#fff,#fff) center/2px 100% no-repeat,linear-gradient(#fff,#fff) center/100% 2px no-repeat;mix-blend-mode:difference}
 #info{position:absolute;left:8px;top:8px;font:12px monospace;text-shadow:1px 1px #000;white-space:pre}
 #bar{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:4px}
-.slot{width:46px;height:46px;border:3px solid #444;display:flex;align-items:end;justify-content:center;font-size:10px;text-shadow:1px 1px #000}.slot.sel{border-color:#fff}
+.slot{width:46px;height:46px;border:3px solid #444;display:flex;align-items:end;justify-content:center;font-size:10px;text-shadow:1px 1px #000}.slot.sel{border-color:#fff}.slot{background-size:contain;background-repeat:no-repeat;background-position:center;image-rendering:pixelated}
 #toast{position:fixed;top:12%;left:50%;transform:translateX(-50%);background:#000b;padding:8px 14px;display:none;z-index:9}
 </style></head><body>
 <div id="hud"><div id="cross"></div><div id="info"></div><div id="bar"></div></div><div id="toast"></div>
@@ -33,7 +33,7 @@ small{opacity:.7}ul{margin:0;padding-left:18px;font-size:14px}
 <label>Name <input id="sn" maxlength="16"></label><label>Render distance <input id="sr" type="range" min="2" max="10"></label>
 <label>FOV <input id="sf" type="range" min="50" max="110"></label><label>Mouse sensitivity <input id="ss" type="range" min="1" max="10"></label></div>
 <button class="big" onclick="go('menu')">Back</button></div>
-<div id="log" class="scr"><h2>Changelog</h2><div class="box"><b>v0.1.0</b><ul>
+<div id="log" class="scr"><h2>Changelog</h2><div class="box"><b>v0.2.0</b><ul><li>Texture system: blocks use 16x16 textures stored as code (palette + pixel rows), atlas built at startup</li><li>Textures for all blocks, hotbar shows block textures; textures have width and height (rectangular allowed)</li></ul><b>v0.1.0</b><ul>
 <li>Voxel world: grass, dirt, stone, sand, water, trees, caves</li><li>Break / place blocks, swimming, double-tap Space to fly</li>
 <li>Saved worlds (browser storage)</li><li>P2P multiplayer (PeerJS): host with room code, private or public, join by code or list</li>
 <li>Host-authoritative block edits, shared seed, player avatars</li></ul></div><button class="big" onclick="go('menu')">Back</button></div>
@@ -44,8 +44,7 @@ small{opacity:.7}ul{margin:0;padding-left:18px;font-size:14px}
 <script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <script>
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-const H=64,SEA=22,CS=16,LOBBY='vxl-lobby-v1',BL=[1,2,3,4,6,7,8],BN=['Grass','Dirt','Stone','Sand','Wood','Leaves','Planks'];
-const COL={1:[.36,.7,.25],2:[.47,.33,.2],3:[.5,.5,.5],4:[.86,.8,.55],5:[.2,.4,.85],6:[.4,.3,.17],7:[.2,.5,.15],8:[.7,.55,.32]};
+const H=64,SEA=22,CS=16,LOBBY='vxl-lobby-v1',BL=[1,2,3,4,6,7,8];
 let S={name:'Player'+(100+Math.random()*900|0),rd:5,fov:75,sens:5};try{Object.assign(S,JSON.parse(localStorage.vx_set))}catch(e){}
 const saveS=()=>{try{localStorage.vx_set=JSON.stringify(S)}catch(e){}};
 const show=id=>$$('.scr').forEach(e=>e.classList.toggle('on',e.id==id));
@@ -86,20 +85,274 @@ const flat=()=>{const o=[];W.edits.forEach((m,k)=>{const[cx,cz]=k.split(',').map
 /* meshing */
 const F=[[1,0,0,[[1,0,1],[1,0,0],[1,1,0],[1,1,1]],.8],[-1,0,0,[[0,0,0],[0,0,1],[0,1,1],[0,1,0]],.8],[0,1,0,[[0,1,1],[1,1,1],[1,1,0],[0,1,0]],1],
  [0,-1,0,[[0,0,0],[1,0,0],[1,0,1],[0,0,1]],.5],[0,0,1,[[0,0,1],[1,0,1],[1,1,1],[0,1,1]],.7],[0,0,-1,[[1,0,0],[0,0,0],[0,1,0],[1,1,0]],.7]];
+/* =====================================================================
+   TEXTURE SYSTEM
+   ---------------------------------------------------------------------
+   TEXTURES = the list of every texture in the game, each with a unique id.
+     {id:11, name:'my_tex', width:16, height:16,   // any size, e.g. width:32,height:16 (old 'size:16' still works = square)
+      palette:['#rrggbb', ...],          // colour 0, 1, 2 ... (up to 36: 0-9 then a-z)
+      data:['row 1 (16 chars)', ... ]}   // <height> row strings, each <width> chars, each char = palette index
+                                         // '.' = transparent pixel
+   To add a texture: copy one entry, give it a NEW id, edit palette + rows.
+   Alternative to palette/data (handy for texture packs): png:'data:image/png;base64,...'
+   BLOCKS = which texture ids each block uses (block id -> textures).
+     top / side / bottom, or all:<id> for the same texture on every face,
+     or faces:[+x,-x,+y,-y,+z,-z] for full control, icon:<id> for the hotbar icon.
+   Rectangular textures are fine: on a block face the whole texture is stretched over the face.
+   Anything that is not in TEXTURES (wrong id / bad data) shows a magenta-black checker.
+   Texture packs / items / UI:  registerTextures([...])  texURL(id)  texSize(id)  drawTex(ctx,id,x,y,w[,h])  (h omitted = keeps the texture's aspect ratio)
+   ===================================================================== */
+const TEXTURES=[
+ {id:1,name:'grass_top',width:16,height:16,
+  palette:['#3d7623','#4a8a2b','#58a032','#66b13b','#7cc44b','#336a1d'],
+  data:[
+   '2332221222010331',
+   '4432112011022322',
+   '3321443211102232',
+   '4301324202310243',
+   '1100312212120251',
+   '3313123213113210',
+   '1222224223113311',
+   '5313432103121321',
+   '1211342130012052',
+   '2123433210033312',
+   '2324123332342343',
+   '2342522213443235',
+   '5313122122342012',
+   '1143232212343221',
+   '1233342121122213',
+   '3211312253002031'
+  ]},
+ {id:2,name:'dirt',width:16,height:16,
+  palette:['#5a3a1f','#6d4626','#7e5230','#8f6038','#a06f45','#45301a','#9b8b7a'],
+  data:[
+   '1332133211022051',
+   '6043320121521313',
+   '2222113121443333',
+   '1231332212421134',
+   '2223133511241210',
+   '1335334423423621',
+   '3113323112210244',
+   '3214230153322242',
+   '2120340226211431',
+   '0002132021211122',
+   '2023330203121210',
+   '1152223022341222',
+   '1341131013322022',
+   '2221121233211223',
+   '1222332333321322',
+   '3440122120133213'
+  ]},
+ {id:3,name:'grass_side',width:16,height:16,
+  palette:['#3d7623','#4a8a2b','#58a032','#66b13b','#7cc44b','#5a3a1f','#6d4626','#7e5230','#8f6038','#a06f45','#45301a','#9b8b7a'],
+  data:[
+   '2332221222010331',
+   '4432112011022322',
+   '3320443111102232',
+   '3206224701210142',
+   '7708601a66716705',
+   '688a889978978b76',
+   '8668878667765799',
+   '87697856a8877797',
+   '767589577b766986',
+   '5557687576766677',
+   '7578885758676765',
+   '66a7778577896777',
+   '6896686568877577',
+   '7776676788766778',
+   '6777887888876877',
+   '8995677675688768'
+  ]},
+ {id:4,name:'stone',width:16,height:16,
+  palette:['#656565','#747474','#818181','#8e8e8e','#9c9c9c','#555555'],
+  data:[
+   '1003222232333100',
+   '2022121441331202',
+   '2301222441011232',
+   '0022233441005542',
+   '0103433244112211',
+   '3002232334431101',
+   '2002111224322134',
+   '3013322123122234',
+   '3004443121351221',
+   '0102441322021310',
+   '0213212113103210',
+   '1243220013331200',
+   '0444323123411021',
+   '3242444334422311',
+   '3224224324423321',
+   '2113103422331213'
+  ]},
+ {id:5,name:'sand',width:16,height:16,
+  palette:['#d1c282','#dacb8c','#e3d597','#ebdfa4','#f2e8b3','#bfaf72'],
+  data:[
+   '1213124243222142',
+   '4301231223331323',
+   '2343332142122141',
+   '3211212243343222',
+   '3333051222313214',
+   '1222423121223123',
+   '0223224122220212',
+   '4323112222221201',
+   '3520310143031223',
+   '1312320223312232',
+   '2313221221432141',
+   '2232224313420051',
+   '3111312320031023',
+   '1512253221022211',
+   '0202211421232332',
+   '0121223331253112'
+  ]},
+ {id:6,name:'water',width:16,height:16,
+  palette:['#1f4fb8','#2a60cc','#3573dd','#4b88ea','#7bb0f5'],
+  data:[
+   '2231232222233222',
+   '1021141322212010',
+   '0101342120122011',
+   '1121233231013133',
+   '2123331331031110',
+   '1121342020001010',
+   '1333321001030022',
+   '1333442321033243',
+   '2331421232131222',
+   '2113212301130322',
+   '2110112112202132',
+   '2321300101114244',
+   '3414213100203144',
+   '2341232120222213',
+   '3230011011321214',
+   '1123201232133424'
+  ]},
+ {id:7,name:'wood_side',width:16,height:16,
+  palette:['#352612','#443018','#553f20','#664b27','#77572e'],
+  data:[
+   '0014442000032430',
+   '0113124033211131',
+   '0032133012211210',
+   '0124344000133220',
+   '1332142201323220',
+   '0332344101013340',
+   '0132144102041120',
+   '0322242002242220',
+   '1024224000024130',
+   '1031142102222410',
+   '2043343301233321',
+   '0022234103134221',
+   '2043334023313121',
+   '0032242022032140',
+   '1042443003133122',
+   '0024442011133110'
+  ]},
+ {id:8,name:'wood_top',width:16,height:16,
+  palette:['#3f2d16','#52391c','#a98450','#b8935d','#c7a269','#9a7644'],
+  data:[
+   '1001100000011000',
+   '1422334444332240',
+   '1233422222543320',
+   '0344235343324321',
+   '0345344444432430',
+   '0323242334452230',
+   '0423423443223240',
+   '1423454554245240',
+   '0453434554323341',
+   '0424443443243440',
+   '1223442332423431',
+   '1344354444432430',
+   '1234233433324320',
+   '1253422222253340',
+   '0222334444332240',
+   '0000100100000011'
+  ]},
+ {id:9,name:'leaves',width:16,height:16,
+  palette:['#1b4f12','#256219','#30761f','#3d8a27','#4f9f33','#154009'],
+  data:[
+   '0021433231212413',
+   '5042212413333211',
+   '1431104011142232',
+   '3322531334321205',
+   '3412221044142021',
+   '1052152413331500',
+   '2410014322101320',
+   '2400424324110302',
+   '3210343201121224',
+   '1001322331033133',
+   '0533314244414112',
+   '2140333241233024',
+   '1023131400310144',
+   '1030324050212142',
+   '2233041201344222',
+   '1210353340240212'
+  ]},
+ {id:10,name:'planks',width:16,height:16,
+  palette:['#8a6a35','#9b7a40','#ac8a4a','#be9c58','#5c4322'],
+  data:[
+   '2214222113332312',
+   '2224122312312122',
+   '2234123212222222',
+   '4444444444444444',
+   '3212222241221222',
+   '2121122242223133',
+   '2322122242322222',
+   '4444444444444444',
+   '2222111222211422',
+   '2211223222222431',
+   '1222321333222422',
+   '4444444444444444',
+   '3243333323333333',
+   '3243332332233333',
+   '1343323233323323',
+   '4444444444444444'
+  ]}
+];
+const BLOCKS={ // block id -> texture ids
+ 1:{name:'Grass',top:1,side:3,bottom:2},
+ 2:{name:'Dirt',all:2},
+ 3:{name:'Stone',all:4},
+ 4:{name:'Sand',all:5},
+ 5:{name:'Water',all:6},
+ 6:{name:'Wood',top:8,side:7,bottom:8},
+ 7:{name:'Leaves',all:9},
+ 8:{name:'Planks',all:10}
+};
+/* ---- engine side (you normally don't need to touch this) ---- */
+const TEX=new Map(),atlasHooks=[],ATL={uv:new Map(),miss:[0,0,1,1],tex:null},BF={};
+const mA=new THREE.MeshBasicMaterial({vertexColors:true,alphaTest:.5}),mB=new THREE.MeshBasicMaterial({vertexColors:true,transparent:true,opacity:.6,depthWrite:false,side:THREE.DoubleSide});
+function decodeTex(t){const w=t.width||t.size||16,h=t.height||t.size||16,cv=document.createElement('canvas');cv.width=w;cv.height=h;const x=cv.getContext('2d');
+ if(t.png){const im=new Image();im.onload=()=>{x.clearRect(0,0,w,h);x.imageSmoothingEnabled=false;x.drawImage(im,0,0,w,h);buildAtlas()};im.src=t.png;return cv}
+ const rows=(Array.isArray(t.data)?t.data.join(''):String(t.data||'')).replace(/\s/g,''),pal=t.palette||[];
+ for(let i=0;i<w*h;i++){const c=rows[i];if(c==='.')continue;x.fillStyle=pal[parseInt(c,36)]||'#f0f';x.fillRect(i%w,i/w|0,1,1)}
+ return cv}
+function buildBF(){for(const b in BLOCKS){const k=BLOCKS[b],s=k.side??k.all,t=k.top??k.all,u=k.bottom??k.all;BF[b]=k.faces||[s,s,t,u,s,s]}}
+function buildAtlas(){const items=[{id:-1,w:16,h:16,cv:null},...[...TEX.values()].map(t=>({id:t.id,w:t.cv.width,h:t.cv.height,cv:t.cv}))].sort((a,b)=>b.h-a.h||a.id-b.id),
+ pow=v=>{let p=1;while(p<v)p<<=1;return p},area=items.reduce((s,i)=>s+i.w*i.h,0),AW=pow(Math.max(Math.ceil(Math.sqrt(area)),...items.map(i=>i.w)));
+ let cx=0,cy=0,sh=0;items.forEach(i=>{if(cx+i.w>AW){cx=0;cy+=sh;sh=0}i.x=cx;i.y=cy;cx+=i.w;sh=Math.max(sh,i.h)});
+ const AH=pow(cy+sh),cv=document.createElement('canvas');cv.width=AW;cv.height=AH;const x=cv.getContext('2d');x.imageSmoothingEnabled=false;const eu=.05/AW,ev=.05/AH;
+ ATL.uv.clear();items.forEach(i=>{if(i.cv)x.drawImage(i.cv,i.x,i.y);else{x.fillStyle='#000';x.fillRect(i.x,i.y,i.w,i.h);x.fillStyle='#f0f';x.fillRect(i.x,i.y,i.w/2,i.h/2);x.fillRect(i.x+i.w/2,i.y+i.h/2,i.w/2,i.h/2)}
+  const r=[i.x/AW+eu,1-(i.y+i.h)/AH+ev,(i.x+i.w)/AW-eu,1-i.y/AH-ev];if(i.id<0)ATL.miss=r;else ATL.uv.set(i.id,r)});
+ const tex=new THREE.CanvasTexture(cv);tex.magFilter=tex.minFilter=THREE.NearestFilter;tex.generateMipmaps=false;
+ if(ATL.tex)ATL.tex.dispose();ATL.tex=tex;mA.map=mB.map=tex;mA.needsUpdate=mB.needsUpdate=true;atlasHooks.forEach(f=>f())}
+function registerTextures(list){list.forEach(t=>TEX.set(t.id,{id:t.id,name:t.name||'tex'+t.id,cv:decodeTex(t)}));buildAtlas()}
+function registerBlocks(o){Object.assign(BLOCKS,o);buildBF();atlasHooks.forEach(f=>f())}
+const blockUV=(b,f)=>ATL.uv.get(BF[b]?BF[b][f]:undefined)||ATL.miss;
+const iconTex=b=>{const k=BLOCKS[b];return k.icon??k.side??k.all??k.top};
+const texCanvas=id=>TEX.get(id)?.cv,texURL=id=>TEX.has(id)?TEX.get(id).cv.toDataURL():'';
+const texSize=id=>{const c=texCanvas(id);return c?[c.width,c.height]:[0,0]};
+const drawTex=(g,id,x,y,w,h)=>{const c=texCanvas(id);if(c){g.imageSmoothingEnabled=false;g.drawImage(c,x,y,w,h??w*c.height/c.width)}};
+buildBF();registerTextures(TEXTURES);
+atlasHooks.push(()=>{if(W)W.chunks.forEach(c=>W.dirty.add(c))}); // re-mesh the world when textures change
 const renderer=new THREE.WebGLRenderer({antialias:false}),scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(75,1,.1,300);
 document.body.prepend(renderer.domElement);const canvas=renderer.domElement;renderer.setPixelRatio(Math.min(devicePixelRatio,2));
 scene.background=new THREE.Color(0x87ceeb);scene.fog=new THREE.Fog(0x87ceeb,40,90);cam.rotation.order='YXZ';
-const mA=new THREE.MeshBasicMaterial({vertexColors:true}),mB=new THREE.MeshBasicMaterial({vertexColors:true,transparent:true,opacity:.6,depthWrite:false,side:THREE.DoubleSide});
 const sel=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(1.01,1.01,1.01)),new THREE.LineBasicMaterial({color:0}));scene.add(sel);
 const rs=()=>{renderer.setSize(innerWidth,innerHeight);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()};addEventListener('resize',rs);rs();
 const rm=m=>{if(m){scene.remove(m);m.geometry.dispose()}},rmc=c=>{rm(c.m);rm(c.w)};
-function mesh(c){rmc(c);c.m=c.w=null;const ox=c.x*CS,oz=c.z*CS,d=c.d,A={p:[],c:[],i:[]},B={p:[],c:[],i:[]};
+function mesh(c){rmc(c);c.m=c.w=null;const ox=c.x*CS,oz=c.z*CS,d=c.d,A={p:[],c:[],u:[],i:[]},B={p:[],c:[],u:[],i:[]};
  const g=(x,y,z)=>y<0?3:y>=H?0:x>=0&&x<CS&&z>=0&&z<CS?d[x|z<<4|y<<8]:gb(ox+x,y,oz+z);
  for(let y=0;y<H;y++)for(let z=0;z<CS;z++)for(let x=0;x<CS;x++){const b=d[x|z<<4|y<<8];if(!b)continue;const T=b==5?B:A,t=.88+hash(ox+x,y,oz+z,1)*.2;
   for(let f=0;f<6;f++){const q=F[f],n=g(x+q[0],y+q[1],z+q[2]);if(b==5?n!=0&&n!=7:n!=0&&n!=5&&n!=7)continue;
-   const col=COL[b==1&&f!=2?2:b],s=q[4]*t,v=T.p.length/3;
-   for(const o of q[3]){T.p.push(x+o[0],y+o[1],z+o[2]);T.c.push(col[0]*s,col[1]*s,col[2]*s)}T.i.push(v,v+1,v+2,v,v+2,v+3)}}
- const mk=(T,mat)=>{if(!T.i.length)return null;const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(T.p,3));g.setAttribute('color',new THREE.Float32BufferAttribute(T.c,3));g.setIndex(T.i);g.computeBoundingSphere();const m=new THREE.Mesh(g,mat);m.position.set(ox,0,oz);scene.add(m);return m};
+   const s=q[4]*t,v=T.p.length/3,r=blockUV(b,f);
+   for(const o of q[3]){T.p.push(x+o[0],y+o[1],z+o[2]);T.c.push(s,s,s)}T.u.push(r[0],r[1],r[2],r[1],r[2],r[3],r[0],r[3]);T.i.push(v,v+1,v+2,v,v+2,v+3)}}
+ const mk=(T,mat)=>{if(!T.i.length)return null;const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(T.p,3));g.setAttribute('color',new THREE.Float32BufferAttribute(T.c,3));g.setAttribute('uv',new THREE.Float32BufferAttribute(T.u,2));g.setIndex(T.i);g.computeBoundingSphere();const m=new THREE.Mesh(g,mat);m.position.set(ox,0,oz);scene.add(m);return m};
  c.m=mk(A,mA);c.w=mk(B,mB);if(c.w)c.w.renderOrder=1}
 let need=[],lk='';
 function stream(){const R=S.rd,pcx=Math.floor(P.x/CS),pcz=Math.floor(P.z/CS),key=pcx+','+pcz+','+R;
@@ -132,8 +385,10 @@ function act(b){const t=ray();if(!t)return;lastAct=performance.now();
  if(b==1){if(t.y>0)edit(t.x,t.y,t.z,0)}else{const x=t.x+t.n[0],y=t.y+t.n[1],z=t.z+t.n[2],c=gb(x,y,z);if(y<0||y>=H||c>0&&c!=5)return;
   if(x+1>P.x-.3&&x<P.x+.3&&z+1>P.z-.3&&z<P.z+.3&&y+1>P.y&&y<P.y+1.8)return;edit(x,y,z,BL[slot])}}
 /* input */
-const bar=$('#bar');BL.forEach((b,i)=>{const e=document.createElement('div'),c=COL[b];e.className='slot';e.style.background=`rgb(${c.map(v=>v*255|0)})`;e.textContent=BN[i];bar.append(e)});
-const pick=i=>{slot=(i+7)%7;[...bar.children].forEach((e,j)=>e.classList.toggle('sel',j==slot))};pick(0);
+const bar=$('#bar');
+const pick=i=>{slot=(i+BL.length)%BL.length;[...bar.children].forEach((e,j)=>e.classList.toggle('sel',j==slot))};
+function buildBar(){bar.textContent='';BL.forEach(b=>{const e=document.createElement('div');e.className='slot';e.style.backgroundImage=`url(${texURL(iconTex(b))})`;e.textContent=BLOCKS[b].name;bar.append(e)});pick(slot)}
+buildBar();atlasHooks.push(buildBar);
 addEventListener('keydown',e=>{if(!locked)return;keys[e.code]=1;if(e.code=='Space'){e.preventDefault();if(!e.repeat){const n=performance.now();if(n-lastSp<300){P.fly^=1;P.vy=0}lastSp=n}}
  if(/^Digit[1-7]$/.test(e.code))pick(+e.code[5]-1)});
 addEventListener('keyup',e=>delete keys[e.code]);
