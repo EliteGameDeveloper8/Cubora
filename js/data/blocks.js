@@ -1,0 +1,63 @@
+/*
+ * BLOCKS: block id -> name and texture ids.
+ *   top / side / bottom, or all:<id> for every face, or faces:[+x,-x,+y,-y,+z,-z]; icon:<id> = inventory icon.
+ * On a block face the whole texture is stretched over the face, so rectangular textures work too.
+ * Ids 21-28 are flowing water levels (not placeable).
+ */
+
+const BLOCKS = {
+  // block id -> texture ids
+  1: { name: 'Grass', top: 1, side: 3, bottom: 2 },
+  2: { name: 'Dirt', all: 2 },
+  3: { name: 'Stone', all: 4 },
+  4: { name: 'Sand', all: 5 },
+  5: { name: 'Water', all: 6 },
+  6: { name: 'Wood', top: 8, side: 7, bottom: 8 },
+  7: { name: 'Leaves', all: 9 },
+  8: { name: 'Planks', all: 10 },
+  9: { name: 'Snow', all: 11 },
+  10: { name: 'Birch', top: 13, side: 12, bottom: 13 },
+  11: { name: 'Birch leaves', all: 14 },
+  12: { name: 'Spruce', top: 16, side: 15, bottom: 16 },
+  13: { name: 'Spruce leaves', all: 17 },
+  14: { name: 'Wool', all: 20 },
+  15: { name: 'Gravel', all: 38 },
+  16: { name: 'Coal ore', all: 34 },
+  17: { name: 'Iron ore', all: 35 },
+  18: { name: 'Gold ore', all: 36 },
+  19: { name: 'Diamond ore', all: 37 },
+  29: { name: 'Dandelion', all: 43, plant: 1 },
+  30: { name: 'Poppy', all: 44, plant: 1 },
+  31: { name: 'Blue orchid', all: 45, plant: 1 },
+  32: { name: 'Tall grass', all: 46, plant: 1 },
+  33: { name: 'Red wool', all: 47 },
+  34: { name: 'Orange wool', all: 48 },
+  35: { name: 'Yellow wool', all: 49 },
+  36: { name: 'Green wool', all: 50 },
+  37: { name: 'Light blue wool', all: 51 },
+  38: { name: 'Purple wool', all: 52 },
+  39: { name: 'Black wool', all: 53 },
+  40: { name: 'Torch', side: 108, top: 109, bottom: 109, icon: 156 },
+  41: { name: 'Red torch', side: 110, top: 111, bottom: 111, icon: 157 },
+  42: { name: 'Orange torch', side: 112, top: 113, bottom: 113, icon: 158 },
+  43: { name: 'Yellow torch', side: 114, top: 115, bottom: 115, icon: 159 },
+  44: { name: 'Green torch', side: 116, top: 117, bottom: 117, icon: 160 },
+  45: { name: 'Light blue torch', side: 118, top: 119, bottom: 119, icon: 161 },
+  46: { name: 'Purple torch', side: 120, top: 121, bottom: 121, icon: 162 },
+  47: { name: 'Chest', faces: [136, 136, 137, 137, 136, 135] },
+  48: { name: 'Seagrass', all: 138 },
+  49: { name: 'Kelp', all: 139 },
+  50: { name: 'Crafting table', top: 163, side: 164, bottom: 10 },
+  51: { name: 'Smithing table', top: 165, side: 166, bottom: 10 },
+  52: { name: 'Loom', top: 167, side: 168, bottom: 10 },
+  53: { name: 'Fletching table', top: 169, side: 170, bottom: 10 },
+  54: { name: 'Furnace', faces: [172, 172, 173, 173, 172, 171] },
+  55: { name: 'Palm log', top: 244, side: 243, bottom: 244 },
+  56: { name: 'Palm leaves', all: 245 },
+  57: { name: 'Sandstone', all: 246 },
+  58: { name: 'Dark planks', all: 247 },
+  59: { name: 'Gold block', all: 248 },
+  60: { name: 'Stone bricks', all: 249 },
+  61: { name: 'Barrel', top: 251, side: 250, bottom: 251 },
+};
+for (let i = 21; i <= 28; i++) BLOCKS[i] = { name: 'Water', all: 6 }; // flowing water levels (not in hotbar)
