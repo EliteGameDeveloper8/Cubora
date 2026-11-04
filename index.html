@@ -21,6 +21,7 @@
     == RANKS ==                 guest/player/admin/host permissions
     == PARTICLES ==             block-break bits
     == STRUCTURES ==            STRUCTURES list (house), placement, villager spawning
+    == COMPLEX STRUCTURES ==    big multi-room buildings (rooms + corridors, jigsaw layout): pirate cove, room templates
     == CHESTS / TRADING ==      chest storage + loot, villager trades
     == PROJECTILES ==           arrows, bows/crossbows, creeper explosions
     == UI SCREENS ==            ✕ buttons, close keys, fullscreen
@@ -136,7 +137,7 @@ select{font:inherit;color:#fff;background:#222;border:2px solid #000;padding:6px
 <label>FOV <input id="sf" type="range" min="50" max="110"></label><label>Mouse sensitivity <input id="ss" type="range" min="1" max="10"></label><label><input id="sao" type="checkbox"> Ambient occlusion</label><label><input id="smini" type="checkbox"> Minimap</label><label><input id="scl" type="checkbox"> Clouds</label><label>Touch controls <select id="stc"><option value="auto">Auto</option><option value="on">On</option><option value="off">Off</option></select></label>
 <b>Controls</b><div id="kbl" style="display:flex;flex-direction:column;gap:4px"></div><button onclick="resetKeys()">Reset controls</button></div>
 <button class="big" onclick="back()">Back</button></div>
-<div id="log" class="scr"><h2>Changelog</h2><div class="box"><b>v0.16.0</b><ul><li>Textures &amp; skin editor (main menu and pause menu)</li><li>Texture pack: repaint any game texture; only you see it; export/import packs (Texture Gallery format)</li><li>Custom skins: paint your player; everyone in the room sees it; import/export skins</li></ul><b>v0.15.0</b><ul><li>/border: add a wall of any radius to any world, shrink it over time, or remove it</li><li>Hunger Games: the zone starts shrinking after 5 minutes, with on-screen warnings</li><li>/title: big on-screen titles (shown to everyone when hosting)</li><li>Mob textures are never stretched (each face shows its real pixel size); removed 13 unused textures</li></ul><b>v0.14.0</b><ul><li>Name tooltips when hovering items and slots</li><li>Armour shows on your character (third person) and on monsters, which sometimes spawn wearing it</li><li>Zombies and skeletons can carry swords, axes, bows or crossbows</li><li>Hunger Games: 24 loot chests spread across the arena</li><li>Third person: the head follows where you look</li><li>Transparent pixels on mob models (skeleton ribs); spider legs fan out properly; villagers have normal arms</li></ul><b>v0.13.0</b><ul><li>Crafting stations: crafting table, smithing table (tools + armour), furnace (smelting, cooking), loom (dyes, wool), fletching table (bows, arrows)</li><li>Armour (leather, iron, gold, diamond) with slots and an armour bar</li><li>Bows (hold to draw), crossbows (load, then fire), arrows</li><li>New mobs: cow, chicken, skeleton (shoots), creeper (explodes); zombies attack villagers and hold their arms forward</li><li>Villages: houses, a smithy, a well, lamps, crafting tables and gravel paths</li><li>Every screen has a ✕ in the corner; the key that opens a screen (E, M) also closes it</li><li>Chests show only the chest and your inventory; the crafting list can be collapsed</li><li>Fullscreen button; proper torch icons; cooked food</li></ul><b>v0.12.0 — now called Cubora</b><ul><li>Structure system (STRUCTURES list) with generated houses: chest with loot and a villager who trades for emeralds</li><li>Chests (craft from 8 planks; shift-click moves stacks)</li><li>Seagrass, kelp and fish in oceans, rivers and lakes</li><li>Block outline follows the block's real shape (torches, plants, chests); aiming hits the shape</li><li>Debug info hidden; F3 shows it</li><li>Scrollable command suggestions (click to pick), close button on chat</li><li>Stars over the whole sky; smoother clouds that fade at the edge</li><li>/structure, /locate house</li></ul><b>v0.11.0</b><ul><li>World options when creating (type, game mode, start time, animals, monsters, day cycle, seasons, join rank) and an Edit button (also in the pause menu)</li><li>World types: Normal, Amplified, Islands, Superflat, Hunger Games (walled arena + centre loot)</li><li>Coloured lighting: sky light + torches you can dye (7 colours); caves and nights are dark</li><li>Block-break particles, 10-stage crack animation</li><li>First-person hand/held item with bob and swing; F5 third person (back/front); F2 screenshots; F1 hide HUD</li><li>Health, fall damage, food, death + respawn; zombies and spiders at night (burn in daylight)</li><li>/xray, /heal, /hurt, /rank, /ranks, /joinrank, /kick</li><li>Ranks: guest, player, admin, host</li></ul><b>v0.10.0</b><ul><li>Command autocomplete (Tab) with usage hints; many new commands (/help lists them)</li><li>Flowers and tall grass, dyes, 7 coloured wools, sticks, ingots</li><li>Tools from wood, stone, iron, gold, diamond; timed mining in survival, ore tiers, sword damage</li><li>Crafting list in the inventory</li><li>Clouds</li><li>Pig, sheep and player textures sized to their model (1 pixel = 1/16 block)</li><li>Spawn always on flat open grass; you get pushed out if stuck in blocks</li></ul><b>v0.9.0</b><ul><li>Zones: deep ocean, shallow ocean, beach, river, lake, fields, forest, mountains, underground (shown in the HUD, /zone)</li><li>Day/night cycle with sky gradient, sunrise/sunset, sun, moon and stars (/time)</li><li>Four seasons that change each zone differently (/season)</li><li>Ores (coal, iron, gold, diamond), gravel; spaghetti, noodle and cheese caves</li><li>Textured pig, sheep and Minecraft-like player models</li><li>Dropped blocks are spinning mini blocks</li><li>Spawn is always on grass in the open (/spawn)</li></ul><b>v0.8.0</b><ul><li>Edited chunks re-render instantly (no seeing through walls when mining fast); closer camera near plane for wide FOV</li><li>Settings remembered on the device; first launch picks settings for your device</li><li>Mobile touch controls (joystick, look, tap/hold, buttons)</li><li>Inventory (E): 36 slots, stacks of 64; survival and creative (/gamemode)</li><li>Entities: pigs and sheep that wander, jump, panic and drop loot; dropped items you pick up (Q drops)</li><li>Chat (T) with commands (/help)</li></ul><b>v0.7.0</b><ul><li>Render distance up to 32 chunks</li><li>Far terrain is now a slider (off, ×1.5 to ×8) using a distance quadtree: detail halves each step further away</li><li>Far terrain shows real trees nearby and forests further out</li><li>Forests: tree density varies by area; new birch and fir trees (with their logs and leaves in the hotbar)</li><li>Leaves are see-through</li><li>Static meshes skip per-frame matrix updates</li></ul><b>v0.6.0</b><ul><li>Block update system (Minecraft-style): only blocks near edits or told by the generator get checked</li><li>Flowing water with levels; springs flow down the mountain and settle</li><li>Climb out of water: jump at the surface next to a block for a bigger hop</li><li>Better underwater look (tint, vignette, denser blue fog)</li><li>Round minimap</li><li>Fixed see-through gaps between far terrain and loaded terrain</li></ul><b>v0.5.1</b><ul><li>Distance haze: far terrain stays visible but soft, fading fully only at the very edge</li><li>No see-through holes at the edge of loaded terrain: stand-in stone (or dirt/grass) is shown until the real chunk loads</li></ul><b>v0.5.0</b><ul><li>Smooth far-terrain handover: low-detail land stays until the real chunks there are built (no gaps while loading)</li><li>Far terrain on/off in Settings</li><li>World map of explored terrain (M key / pause menu), saved in the world, drag + zoom</li><li>Minimap (can be turned off in Settings)</li></ul><b>v0.4.0</b><ul><li>Infinite world height: 3D chunks load in a sphere around you (up and down too)</li><li>Spherical fog in every direction</li><li>Far terrain: simplified, lower-detail landscape out to 2× render distance</li><li>Mountains with bare stone and snowy peaks, new Snow block</li><li>Water springs on mountains that are generated already flowed down as streams and waterfalls</li></ul><b>v0.3.0</b><ul><li>Smooth ambient occlusion (toggle in Settings)</li><li>Sprint key (hold to run faster, with FOV kick)</li><li>Rebindable controls in Settings</li><li>Pause menu shows the world blurred behind it, with a Settings button</li><li>Render distance up to 16 chunks</li></ul><b>v0.2.0</b><ul><li>Texture system: blocks use 16x16 textures stored as code (palette + pixel rows), atlas built at startup</li><li>Textures for all blocks, hotbar shows block textures; textures have width and height (rectangular allowed)</li></ul><b>v0.1.0</b><ul>
+<div id="log" class="scr"><h2>Changelog</h2><div class="box"><b>v0.17.0</b><ul><li>Pirate Cove: a big fortified hideout on the beach - stone tower with a cellar, tavern, barracks, armory, captain's cabin, prison, treasure vault, a pier and a pirate ship (find it with /locate pirate_cove tp)</li><li>New system for big multi-room structures: rooms are joined by corridors in a new random layout every time (like trial chambers); the cove is the first one</li><li>Wide sandy beaches with palm trees on new worlds (old worlds keep their terrain; use /structure pirate_cove anywhere)</li><li>New blocks: palm log, palm leaves, sandstone, dark planks, stone bricks, gold block, barrel (all craftable or lootable)</li></ul><b>v0.16.0</b><ul><li>Textures &amp; skin editor (main menu and pause menu)</li><li>Texture pack: repaint any game texture; only you see it; export/import packs (Texture Gallery format)</li><li>Custom skins: paint your player; everyone in the room sees it; import/export skins</li></ul><b>v0.15.0</b><ul><li>/border: add a wall of any radius to any world, shrink it over time, or remove it</li><li>Hunger Games: the zone starts shrinking after 5 minutes, with on-screen warnings</li><li>/title: big on-screen titles (shown to everyone when hosting)</li><li>Mob textures are never stretched (each face shows its real pixel size); removed 13 unused textures</li></ul><b>v0.14.0</b><ul><li>Name tooltips when hovering items and slots</li><li>Armour shows on your character (third person) and on monsters, which sometimes spawn wearing it</li><li>Zombies and skeletons can carry swords, axes, bows or crossbows</li><li>Hunger Games: 24 loot chests spread across the arena</li><li>Third person: the head follows where you look</li><li>Transparent pixels on mob models (skeleton ribs); spider legs fan out properly; villagers have normal arms</li></ul><b>v0.13.0</b><ul><li>Crafting stations: crafting table, smithing table (tools + armour), furnace (smelting, cooking), loom (dyes, wool), fletching table (bows, arrows)</li><li>Armour (leather, iron, gold, diamond) with slots and an armour bar</li><li>Bows (hold to draw), crossbows (load, then fire), arrows</li><li>New mobs: cow, chicken, skeleton (shoots), creeper (explodes); zombies attack villagers and hold their arms forward</li><li>Villages: houses, a smithy, a well, lamps, crafting tables and gravel paths</li><li>Every screen has a ✕ in the corner; the key that opens a screen (E, M) also closes it</li><li>Chests show only the chest and your inventory; the crafting list can be collapsed</li><li>Fullscreen button; proper torch icons; cooked food</li></ul><b>v0.12.0 — now called Cubora</b><ul><li>Structure system (STRUCTURES list) with generated houses: chest with loot and a villager who trades for emeralds</li><li>Chests (craft from 8 planks; shift-click moves stacks)</li><li>Seagrass, kelp and fish in oceans, rivers and lakes</li><li>Block outline follows the block's real shape (torches, plants, chests); aiming hits the shape</li><li>Debug info hidden; F3 shows it</li><li>Scrollable command suggestions (click to pick), close button on chat</li><li>Stars over the whole sky; smoother clouds that fade at the edge</li><li>/structure, /locate house</li></ul><b>v0.11.0</b><ul><li>World options when creating (type, game mode, start time, animals, monsters, day cycle, seasons, join rank) and an Edit button (also in the pause menu)</li><li>World types: Normal, Amplified, Islands, Superflat, Hunger Games (walled arena + centre loot)</li><li>Coloured lighting: sky light + torches you can dye (7 colours); caves and nights are dark</li><li>Block-break particles, 10-stage crack animation</li><li>First-person hand/held item with bob and swing; F5 third person (back/front); F2 screenshots; F1 hide HUD</li><li>Health, fall damage, food, death + respawn; zombies and spiders at night (burn in daylight)</li><li>/xray, /heal, /hurt, /rank, /ranks, /joinrank, /kick</li><li>Ranks: guest, player, admin, host</li></ul><b>v0.10.0</b><ul><li>Command autocomplete (Tab) with usage hints; many new commands (/help lists them)</li><li>Flowers and tall grass, dyes, 7 coloured wools, sticks, ingots</li><li>Tools from wood, stone, iron, gold, diamond; timed mining in survival, ore tiers, sword damage</li><li>Crafting list in the inventory</li><li>Clouds</li><li>Pig, sheep and player textures sized to their model (1 pixel = 1/16 block)</li><li>Spawn always on flat open grass; you get pushed out if stuck in blocks</li></ul><b>v0.9.0</b><ul><li>Zones: deep ocean, shallow ocean, beach, river, lake, fields, forest, mountains, underground (shown in the HUD, /zone)</li><li>Day/night cycle with sky gradient, sunrise/sunset, sun, moon and stars (/time)</li><li>Four seasons that change each zone differently (/season)</li><li>Ores (coal, iron, gold, diamond), gravel; spaghetti, noodle and cheese caves</li><li>Textured pig, sheep and Minecraft-like player models</li><li>Dropped blocks are spinning mini blocks</li><li>Spawn is always on grass in the open (/spawn)</li></ul><b>v0.8.0</b><ul><li>Edited chunks re-render instantly (no seeing through walls when mining fast); closer camera near plane for wide FOV</li><li>Settings remembered on the device; first launch picks settings for your device</li><li>Mobile touch controls (joystick, look, tap/hold, buttons)</li><li>Inventory (E): 36 slots, stacks of 64; survival and creative (/gamemode)</li><li>Entities: pigs and sheep that wander, jump, panic and drop loot; dropped items you pick up (Q drops)</li><li>Chat (T) with commands (/help)</li></ul><b>v0.7.0</b><ul><li>Render distance up to 32 chunks</li><li>Far terrain is now a slider (off, ×1.5 to ×8) using a distance quadtree: detail halves each step further away</li><li>Far terrain shows real trees nearby and forests further out</li><li>Forests: tree density varies by area; new birch and fir trees (with their logs and leaves in the hotbar)</li><li>Leaves are see-through</li><li>Static meshes skip per-frame matrix updates</li></ul><b>v0.6.0</b><ul><li>Block update system (Minecraft-style): only blocks near edits or told by the generator get checked</li><li>Flowing water with levels; springs flow down the mountain and settle</li><li>Climb out of water: jump at the surface next to a block for a bigger hop</li><li>Better underwater look (tint, vignette, denser blue fog)</li><li>Round minimap</li><li>Fixed see-through gaps between far terrain and loaded terrain</li></ul><b>v0.5.1</b><ul><li>Distance haze: far terrain stays visible but soft, fading fully only at the very edge</li><li>No see-through holes at the edge of loaded terrain: stand-in stone (or dirt/grass) is shown until the real chunk loads</li></ul><b>v0.5.0</b><ul><li>Smooth far-terrain handover: low-detail land stays until the real chunks there are built (no gaps while loading)</li><li>Far terrain on/off in Settings</li><li>World map of explored terrain (M key / pause menu), saved in the world, drag + zoom</li><li>Minimap (can be turned off in Settings)</li></ul><b>v0.4.0</b><ul><li>Infinite world height: 3D chunks load in a sphere around you (up and down too)</li><li>Spherical fog in every direction</li><li>Far terrain: simplified, lower-detail landscape out to 2× render distance</li><li>Mountains with bare stone and snowy peaks, new Snow block</li><li>Water springs on mountains that are generated already flowed down as streams and waterfalls</li></ul><b>v0.3.0</b><ul><li>Smooth ambient occlusion (toggle in Settings)</li><li>Sprint key (hold to run faster, with FOV kick)</li><li>Rebindable controls in Settings</li><li>Pause menu shows the world blurred behind it, with a Settings button</li><li>Render distance up to 16 chunks</li></ul><b>v0.2.0</b><ul><li>Texture system: blocks use 16x16 textures stored as code (palette + pixel rows), atlas built at startup</li><li>Textures for all blocks, hotbar shows block textures; textures have width and height (rectangular allowed)</li></ul><b>v0.1.0</b><ul>
 <li>Voxel world: grass, dirt, stone, sand, water, trees, caves</li><li>Break / place blocks, swimming, double-tap Space to fly</li>
 <li>Saved worlds (browser storage)</li><li>P2P multiplayer (PeerJS): host with room code, private or public, join by code or list</li>
 <li>Host-authoritative block edits, shared seed, player avatars</li></ul></div><button class="big" onclick="go('menu')">Back</button></div>
@@ -179,7 +180,7 @@ select{font:inherit;color:#fff;background:#222;border:2px solid #000;padding:6px
 <script>
 /* == GAME CODE == helpers, constants (SEA = water level, CS = chunk size (16x16x16 cubes, world is infinite in all directions), SNOW = snow line, LT = far-terrain tile size, BL = hotbar blocks) */
 // water: 5 = source, 21..27 = flowing level 1..7, 28 = falling
-const LF=b=>b==7||b==11||b==13; // leaves (see-through)
+const LF=b=>b==7||b==11||b==13||b==56; // leaves (see-through)
 const PL=b=>b>=29&&b<=32; // plants: drawn as an X, not solid, need grass/dirt under them
 // torches: light sources (ids 40-46). TCOL = light colour. OPQ = blocks that stop light and hide faces.
 const TORCH=b=>b>=40&&b<=46,TCOL={40:[1,.82,.55],41:[1,.28,.22],42:[1,.58,.18],43:[1,.95,.38],44:[.38,1,.38],45:[.38,.75,1],46:[.8,.38,1]},ORE=b=>b>=16&&b<=19;
@@ -229,21 +230,28 @@ const n2=(x,z,s)=>n3(x,0,z,s);
 const Z={DEEP:0,SHALLOW:1,BEACH:2,RIVER:3,LAKE:4,FIELDS:5,FOREST:6,MOUNTAIN:7,UNDER:8},ZNAME=['Deep ocean','Shallow ocean','Beach','River','Lake','Fields','Forest','Mountains','Underground'];
 const sat=v=>v<0?0:v>1?1:v,smt=v=>{v=sat(v);return v*v*(3-2*v)};let ZN=5;
 let GP='normal'; // world preset (set when a world starts): normal, amplified, islands, flat, hunger
+let GV=1; // generator version: worlds made before v0.17 stay 1 (their terrain never changes); new worlds are 2 = wide sandy beaches, palm trees, pirate coves
+const cval=(x,z,s)=>n2(x/700,z/700,s+40)*.75+n2(x/170,z/170,s+41)*.25-(GP=='islands'?.17:0); // continent noise: low = ocean
 function hgt(x,z,s){if(GP=='flat'){ZN=Z.FIELDS;return SEA+5}const A=GP=='amplified',b=24+(n2(x/70,z/70,s)*.55+n2(x/30,z/30,s+1)*.3+n2(x/11,z/11,s+2)*.15-.5)*56*(A?1.6:1);
  const m=smt((n2(x/260,z/260,s+3)-(A?.42:.52))/.22),r=1-Math.abs(n2(x/48,z/48,s+4)*2-1);let h=b+7+m*(45+r*60)*(A?2:1); // land sits a bit above sea level so beaches stay along coasts
- const c=n2(x/700,z/700,s+40)*.75+n2(x/170,z/170,s+41)*.25-(GP=='islands'?.17:0),L=smt((c-.36)/.09);              // continents: c low = ocean
+ const c=cval(x,z,s),L=smt((c-.36)/.09);              // continents: c low = ocean
+ if(GV>=2&&L>0&&m<.5){const bw=(1-smt((c-.425)/.03))*(1-smt(m*3));if(bw>0)h=lp(h,SEA+.9+n2(x/11,z/11,s+80)*1.7+n2(x/4,z/4,s+81)*.6,bw)} // v2: the land flattens into a wide, gently dune-covered beach near every coast
  if(L<1)h=lp(lp(SEA-30,SEA-6,smt((c-.25)/.07)),h,L);                                      // deep floor -> shallow shelf -> land
  let rv=0,lk=0;if(L>.6&&h<84){rv=smt(1-Math.abs(n2(x/280,z/280,s+50)*2-1)/.045)*smt((84-h)/14);h=lp(h,SEA-3,rv)} // rivers carve to below sea level
  if(L>.6&&m<.25){lk=smt((n2(x/120,z/120,s+60)-.74)/.05)*(1-m*4);h=lp(h,SEA-4,lk)}          // lakes: round dips in lowland
  h=Math.floor(h);
- ZN=L<.5?(c<.31?Z.DEEP:Z.SHALLOW):rv>.5?Z.RIVER:lk>.5?Z.LAKE:h<=SEA+2?Z.BEACH:m>.3||h>70?Z.MOUNTAIN:n2(x/140,z/140,s+20)>.5?Z.FOREST:Z.FIELDS;
+ ZN=L<.5?(c<.31?Z.DEEP:Z.SHALLOW):rv>.5?Z.RIVER:lk>.5?Z.LAKE:(GV>=2?h<=SEA+3&&c<.45:h<=SEA+2)?Z.BEACH:m>.3||h>70?Z.MOUNTAIN:n2(x/140,z/140,s+20)>.5?Z.FOREST:Z.FIELDS;
  return h}
 const zoneAt=(x,z,s)=>(hgt(x,z,s),ZN);
 const rocky=(x,z,h,s)=>h>62+n2(x/9,z/9,s+7)*14; // bare stone on high ground
-const surf=(x,z,h,s)=>h<SEA-12?15:h<=SEA+1?4:h>=SNOW+(hash(x,7,z,s)*5|0)?9:rocky(x,z,h,s)?3:1; // top block of a column
+const surf=(x,z,h,s)=>h<SEA-12?15:h<=SEA+1||GV>=2&&h<=SEA+3&&cval(x,z,s)<.45?4:h>=SNOW+(hash(x,7,z,s)*5|0)?9:rocky(x,z,h,s)?3:1; // top block of a column
 // forests: tree density follows a noise map (dense forests, sparse plains). Type: fir up high, birch groves, oak elsewhere.
 const dens=(x,z,s)=>{const f=n2(x/140,z/140,s+20);return f<.42?.002:.002+(f-.42)*.12};
-function treeAt(x,z,s){if(GP=='flat'||hash(x,0,z,s+9)>=dens(x,z,s))return null;const h=hgt(x,z,s);if(h<=SEA+1||surf(x,z,h,s)!=1)return null;
+// palms (t:3): v2 worlds only, on sandy beaches; n = trunk height, sh = how far the trunk leans (0-2 blocks) toward (dx,dz)
+const pdens=(x,z,s)=>.003+Math.max(0,n2(x/22,z/22,s+30)-.4)*.14;
+function palmAt(x,z,s){if(hash(x,6,z,s+19)>=pdens(x,z,s))return null;const h=hgt(x,z,s);if(ZN!=Z.BEACH||h<=SEA||surf(x,z,h,s)!=4)return null;
+ const n=5+(hash(x,1,z,s+4)*3|0),q=hash(x,2,z,s+5),d=[[1,0],[-1,0],[0,1],[0,-1]][hash(x,3,z,s+6)*4|0];return{t:3,h,n,top:h+n+1,sh:q<.3?0:q<.75?1:2,dx:d[0],dz:d[1]}}
+function treeAt(x,z,s){if(GP=='flat')return null;if(GV>=2){const p=palmAt(x,z,s);if(p)return p}if(hash(x,0,z,s+9)>=dens(x,z,s))return null;const h=hgt(x,z,s);if(h<=SEA+1||surf(x,z,h,s)!=1)return null;
  const r=hash(x,1,z,s),t=h>50?2:hash(x,2,z,s)<(n2(x/200,z/200,s+22)>.55?.75:.08)?1:0;
  return{t,h,top:h+(t==2?7+(r*3|0):t==1?5+(r>.5?1:0):4+(r>.5?1:0))}} // t: 0 oak, 1 birch, 2 fir
 // UNDERGROUND cave types (d = depth below surface): spaghetti tunnels (two thin noise bands crossing),
@@ -266,7 +274,8 @@ function spring(gx,gz){const k=gx+','+gz;let p=W.springs.get(k);if(p)return p;p=
      size:[w,h,d] (layers bottom to top, each layer = d rows of w chars), pal: char -> block id (' ' = leave terrain, '.' = air),
      zones: where it can appear, spacing: grid size in blocks (one try per cell), chance: 0..1 per cell, flat: max height
      difference allowed under it, foundation: block to fill down to the ground, entities: [[mob,x,y,z]], loot: chest loot table.
-   The generator places it deterministically (same seed = same place), rotated randomly, while chunks generate. */
+   The generator places it deterministically (same seed = same place), rotated randomly, while chunks generate.
+   Big buildings with many rooms (like Minecraft's trial chambers) use kind:'complex' instead - see == COMPLEX STRUCTURES == below. */
 const LOOT={hunger:[[123,1,1,.35],[127,1,1,.25],[131,1,1,.12],[156,1,1,.3],[157,1,1,.12],[158,4,12,.5],[165,1,4,.5],[166,1,3,.4],[100,2,5,.4],[140,1,1,.2],[141,1,1,.15],[142,1,1,.15],[143,1,1,.2],[145,1,1,.1],[147,1,1,.1],[40,2,6,.4],[109,1,3,.3],[103,1,1,.05]],
  house:[[8,4,12,.9],[40,2,6,.8],[100,1,4,.6],[117,1,4,.5],[102,2,8,.7],[105,1,3,.4],[106,1,2,.2],[109,1,4,.5],[103,1,1,.08],[124,1,1,.25],[127,1,1,.15],[29,1,3,.4],[104,2,6,.6]]}; // [item,min,max,chance]
 const STRUCTURES={
@@ -298,10 +307,152 @@ const STRUCTURES={
  village:{size:[30,8,30],zones:[Z.FIELDS],spacing:260,chance:.55,flat:5,
   parts:[['house',2,2,0],['house',21,2,0],['house',2,21,2],['smithy',21,21,2],['well',13,13,0],['table',13,9,0],['lamp',11,11,0],['lamp',19,11,0],['lamp',11,19,0],['lamp',19,19,0]],
   paths:[[0,14,29,16],[14,0,16,29],[4,9,6,14],[23,9,25,14],[4,16,6,21],[23,16,25,21]]}};
-const SMAX=32; // largest structure footprint, for searching nearby cells
+const SMAX=64; // largest structure footprint, for searching nearby cells
+/* == COMPLEX STRUCTURES == big structures made of several ROOMS joined by corridors, built like Minecraft's trial chambers.
+   A complex is a STRUCTURES entry with kind:'complex': size:[N, height above the base, N] (a square canvas), below: how deep it goes, and
+     pool: names of ROOMS that may be attached at random (rooms:N of them), fixed: [[room, x, y, z, rotation]...] pieces that always exist,
+     maxZ / underMaxZ: how far toward the front (+z) rooms / cellar rooms may reach, site: where it may be placed (see complexSite).
+   ROOMS holds the room templates. A template has w,h,d, a build(g) that fills its Grid (255 = leave the terrain, 0 = air that digs out the
+   terrain, else a block id), and: doors:[[x,z,dir,standingLayer,open?]] = places on its walls where a corridor may be cut through
+   (dir 0:+x 1:-x 2:+z 3:-z; the wall stays solid unless the door gets used; open:1 = always open, with steps down to the ground),
+   weight / max / min / after (how often it appears: min = always at least this many, after = only once N rooms exist), under:1 (cellar room,
+   its floor is 6 below the ground), found:1 (stone foundation down to the ground), loot:'pirate' (chest table), ents:[[mob,x,layer,z]].
+   The layout is a jigsaw: fixed pieces first, then random rooms are hung on free doors with a short corridor, rotated, and checked against
+   everything already placed. The same seed + place always gives the same building. To make your own complex: add rooms, add an entry. */
+const DV=[[1,0],[-1,0],[0,1],[0,-1]],OPP=[1,0,3,2]; // door directions in room space: 0 +x, 1 -x, 2 +z, 3 -z
+const mkRng=a=>()=>{a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+class Grid{constructor(w,h,d){this.w=w;this.h=h;this.d=d;this.a=new Uint8Array(w*h*d).fill(255);this.piles=[]}
+ ok(x,y,z){return x>=0&&y>=0&&z>=0&&x<this.w&&y<this.h&&z<this.d}
+ set(x,y,z,b){if(this.ok(x,y,z))this.a[x+z*this.w+y*this.w*this.d]=b;return this}
+ get(x,y,z){return this.ok(x,y,z)?this.a[x+z*this.w+y*this.w*this.d]:255}
+ fill(x0,y0,z0,x1,y1,z1,b){for(let y=Math.min(y0,y1);y<=Math.max(y0,y1);y++)for(let z=Math.min(z0,z1);z<=Math.max(z0,z1);z++)for(let x=Math.min(x0,x1);x<=Math.max(x0,x1);x++)this.set(x,y,z,b);return this}
+ // a plain room: floor at y=0, solid walls, air inside, a roof on top (roof=null: open to the sky, the walls end at the top layer)
+ room(wall,floor,roof,corner){const{w,h,d}=this;this.fill(0,0,0,w-1,0,d-1,floor).fill(0,1,0,w-1,h-1,d-1,wall).fill(1,1,1,w-2,h-1,d-2,0);
+  if(roof!=null)this.fill(0,h-1,0,w-1,h-1,d-1,roof);
+  if(corner!=null)for(const[x,z]of[[0,0],[w-1,0],[0,d-1],[w-1,d-1]])this.fill(x,1,z,x,h-2,z,corner);return this}
+ post(x,z,y,n,log,torch){return this.fill(x,y,z,x,y+n-1,z,log).set(x,y+n,z,torch)} // a lamp post: n logs and a torch on top
+ bed(x,y,z,dx,dz){return this.set(x,y,z,14).set(x+dx,y,z+dz,33)} // pillow + blanket
+ // stairs of whole blocks: from the floor slab at layer s0 up to the slab at s0+R, first step at (x,z), going (dx,dz); cuts the hole through the slab above
+ stair(x,z,dx,dz,s0,R,b){for(let k=1;k<=R;k++){const cx=x+dx*(k-1),cz=z+dz*(k-1);if(k<R)this.fill(cx,s0+k+1,cz,cx,s0+R,cz,0);this.fill(cx,s0+1,cz,cx,s0+k,cz,b)}return this}}
+LOOT.pirate=[[105,1,4,.6],[106,1,4,.5],[109,1,3,.45],[158,4,16,.6],[165,1,3,.4],[168,1,3,.4],[40,2,8,.5],[102,2,8,.5],[108,1,4,.4],[162,1,3,.3],[161,1,3,.25],[128,1,1,.1],[131,1,1,.1],[132,1,1,.08],[148,1,1,.06],[103,1,1,.1],[156,1,1,.12],[157,1,1,.06],[59,1,1,.08]];
+LOOT.vault=[[59,1,3,.9],[106,3,10,.9],[109,2,6,.8],[103,1,4,.7],[105,3,8,.7],[131,1,1,.35],[130,1,1,.2],[150,1,1,.2],[145,1,1,.15],[147,1,1,.15],[157,1,1,.2],[158,8,24,.7],[168,2,6,.5]]; // [item,min,max,chance]
+const ROOMS={};
+(function(){const brick=60,dark=58,plank=8,sand=57,gold=59,red=33,black=39,white=14,log=6,palm=55,chest=47,barrel=61,torch=40,furn=54,craft=50,smith=51,fletch=53,gravel=15,water=5;
+ // ---- the pirate tower: cellar, hall, bunks, captain's cabin and a lookout deck with the flag. Layer 6 = the ground floor slab, 7 = where you stand
+ ROOMS.tower={w:11,h:30,d:11,fl:7,found:1,loot:'pirate',doors:[[5,10,2,7,1],[0,3,1,7],[10,3,0,7],[0,3,1,1],[10,3,0,1],[5,0,3,1]],
+  ents:[['zombie',5,7,6],['skeleton',6,12,5],['zombie',5,17,6]],
+  build(g){g.fill(0,0,0,10,23,10,brick);for(const s of[0,6,11,16])g.fill(1,s+1,1,9,s+4,9,0);g.fill(1,22,1,9,23,9,0);
+   for(let i=0;i<=10;i++)for(const[x,z]of[[i,0],[i,10],[0,i],[10,i]])if((x+z)%2)g.set(x,23,z,0); // battlements
+   for(const s of[7,12,17])for(const[x,z]of[[0,8],[10,8],[2,0],[8,0],[2,10],[8,10]])g.set(x,s+2,z,0); // arrow slits
+   g.stair(1,9,0,-1,0,6,brick).stair(9,9,0,-1,6,5,plank).stair(1,9,1,0,11,5,plank).stair(9,1,0,1,16,5,plank);
+   g.fill(5,22,5,5,28,5,log).fill(6,26,5,9,28,5,black).set(7,27,5,white).set(8,27,5,white); // flag pole + flag
+   // ground hall
+   g.post(2,2,7,2,log,torch).post(8,2,7,2,log,torch).fill(4,7,4,6,7,4,plank).set(5,8,4,torch).set(8,7,8,chest).set(7,7,8,chest).set(1,7,1,barrel).set(2,7,1,barrel).set(1,8,1,barrel).set(8,7,1,furn);
+   // cellar
+   g.post(2,2,1,2,brick,torch).post(8,2,1,2,brick,torch).set(8,1,8,barrel).set(7,1,8,barrel).set(8,2,8,barrel).set(2,1,5,chest);
+   // bunks
+   g.bed(1,12,1,1,0).bed(4,12,1,1,0).bed(7,12,1,1,0).bed(1,12,3,1,0).post(8,6,12,2,log,torch).set(8,12,3,chest).set(2,12,7,barrel);
+   // captain's quarters
+   g.set(1,17,1,craft).set(2,17,1,chest).bed(1,17,7,1,0).set(8,17,8,gold).set(8,17,7,gold).set(8,18,8,gold).post(4,3,17,2,log,torch).set(7,17,4,chest)}};
+ // ---- ground floor rooms ----
+ ROOMS.hall={w:13,h:6,d:9,fl:1,found:1,weight:3,max:2,loot:'pirate',doors:[[6,8,2,1],[6,0,3,1],[0,4,1,1],[12,4,0,1]],ents:[['zombie',4,1,3]],
+  build(g){g.room(dark,plank,dark,log);g.fill(8,1,1,11,1,1,barrel).fill(8,1,2,11,1,2,plank).set(9,2,2,torch).set(11,2,1,chest).fill(2,1,4,3,1,5,plank).set(2,2,4,torch).fill(9,1,5,10,1,6,plank).set(10,2,6,torch)
+   .set(1,1,1,furn).set(2,1,1,craft).fill(1,1,6,1,2,7,barrel).set(2,1,7,barrel).set(11,1,7,chest)}};
+ ROOMS.barracks={w:9,h:6,d:9,fl:1,found:1,weight:2,max:2,loot:'pirate',doors:[[4,8,2,1],[4,0,3,1],[0,4,1,1],[8,4,0,1]],ents:[['skeleton',3,1,3]],
+  build(g){g.room(dark,plank,dark,log);g.bed(1,1,1,0,1).bed(1,1,6,0,1).bed(7,1,1,0,1).bed(7,1,6,0,1).fill(4,1,4,4,1,4,plank).set(4,2,4,chest).post(2,3,1,2,log,torch).post(6,5,1,2,log,torch)}};
+ ROOMS.armory={w:7,h:6,d:7,fl:1,found:1,weight:2,max:1,loot:'pirate',doors:[[3,6,2,1],[3,0,3,1]],ents:[['zombie',3,1,3]],
+  build(g){g.room(dark,plank,dark,log);g.set(1,1,1,smith).set(2,1,1,fletch).set(1,1,2,furn).set(5,1,1,chest).set(5,1,5,chest).set(1,1,5,craft).post(5,3,1,2,log,torch)}};
+ ROOMS.store={w:7,h:5,d:7,fl:1,found:1,weight:2,max:2,loot:'pirate',doors:[[3,6,2,1],[3,0,3,1],[0,3,1,1]],
+  build(g){g.room(dark,plank,dark,log);g.fill(1,1,1,2,2,1,barrel).fill(1,1,2,1,2,2,barrel).set(5,1,5,chest).set(5,1,1,barrel).set(5,2,1,barrel).fill(4,1,5,4,1,5,barrel).post(3,3,1,1,log,torch)}};
+ ROOMS.captain={w:9,h:6,d:9,fl:1,found:1,weight:1,max:1,min:1,after:3,loot:'vault',doors:[[4,8,2,1]],ents:[['skeleton',4,1,4]],
+  build(g){g.room(dark,plank,dark,log);g.bed(1,1,1,0,1).set(7,1,1,chest).set(7,1,2,chest).set(1,1,7,craft).fill(6,1,7,7,1,7,gold).set(7,2,7,gold).post(3,3,1,2,log,torch).post(5,5,1,2,log,torch).fill(3,1,6,5,1,6,plank)}};
+ ROOMS.yard={w:11,h:4,d:11,fl:1,found:1,weight:2,max:2,loot:'pirate',doors:[[5,10,2,1],[5,0,3,1],[0,5,1,1],[10,5,0,1]],
+  build(g){g.room(brick,gravel,null,null);g.fill(4,1,4,6,1,6,brick).set(5,1,5,0).set(5,0,5,water).set(1,1,1,barrel).set(2,1,1,barrel).set(9,1,1,chest).post(1,9,1,2,log,torch).post(9,9,1,2,log,torch)}};
+ // ---- cellar rooms (their floor is 6 below the ground) ----
+ ROOMS.cell={w:9,h:6,d:9,fl:1,under:1,weight:3,max:3,loot:'pirate',doors:[[4,8,2,1],[4,0,3,1],[0,4,1,1],[8,4,0,1]],ents:[['zombie',4,1,4]],
+  build(g){g.room(brick,brick,brick,null);for(const[x,z]of[[2,2],[6,2],[2,6],[6,6]])g.fill(x,1,z,x,4,z,brick);g.set(4,1,2,barrel).set(5,1,2,barrel).set(1,1,7,chest).post(4,6,1,2,brick,torch)}};
+ ROOMS.prison={w:11,h:6,d:8,fl:1,under:1,weight:2,max:1,loot:'pirate',doors:[[0,5,1,1],[10,5,0,1]],ents:[['skeleton',2,1,1],['zombie',8,1,1]],
+  build(g){g.room(brick,brick,brick,null);for(const x of[3,6,9])g.fill(x,1,1,x,4,2,brick);for(const x of[1,2,4,5,7,8])g.fill(x,1,3,x,4,3,brick);for(const x of[2,5,8])g.fill(x,1,3,x,3,3,0);g.set(4,1,1,chest).set(1,1,5,barrel).post(5,5,1,2,brick,torch)}};
+ ROOMS.vault={w:9,h:6,d:9,fl:1,under:1,weight:0,max:1,min:1,after:3,loot:'vault',doors:[[4,8,2,1]],ents:[['skeleton',2,1,6],['skeleton',6,1,6]],
+  build(g){g.room(brick,brick,brick,null);g.fill(1,1,1,3,1,2,gold).fill(1,2,1,2,2,1,gold).set(1,3,1,gold).fill(5,1,1,7,1,1,gold).set(7,1,2,chest).set(5,1,2,chest).set(1,1,4,chest).set(7,1,4,chest).post(4,4,1,2,brick,torch).post(2,7,1,2,brick,torch).post(6,7,1,2,brick,torch)}};
+ ROOMS.cstore={w:7,h:6,d:7,fl:1,under:1,weight:2,max:2,loot:'pirate',doors:[[3,6,2,1],[3,0,3,1]],
+  build(g){g.room(brick,brick,brick,null);g.fill(1,1,1,2,3,1,barrel).fill(1,1,2,1,2,2,barrel).set(5,1,5,chest).fill(5,1,1,5,2,1,barrel).post(3,3,1,2,brick,torch)}};
+ // ---- the pier: a long wooden jetty on piles, open at the land end ----
+ ROOMS.pier={w:5,h:4,d:24,fl:1,loot:'pirate',doors:[[2,0,3,1,1]],
+  build(g){g.fill(0,0,0,4,0,23,dark).fill(0,0,0,0,0,23,log).fill(4,0,0,4,0,23,log);for(const z of[4,10,16,22]){g.post(0,z,1,2,log,torch).post(4,z,1,2,log,torch)}
+   for(const z of[1,5,9,13,17,21])g.piles.push([0,z],[4,z]);g.set(1,1,23,barrel).set(2,1,23,barrel).set(3,1,23,chest).set(1,2,23,barrel)}};
+ // ---- the ship: hull on the water, stern cabin, two masts with sails ----
+ ROOMS.ship={w:7,h:18,d:19,fl:5,loot:'pirate',doors:[],ents:[['skeleton',3,5,2]],
+  build(g){const hw=[2,3,3,3,3,3,3,3,3,3,3,3,3,2,2,2,1,1,0];
+   for(let z=0;z<19;z++){for(let y=0;y<4;y++){const h=hw[z]-(3-y);if(h>=0)g.fill(3-h,y,z,3+h,y,z,dark)}g.fill(3-hw[z],4,z,3+hw[z],4,z,plank);g.fill(3-hw[z],5,z,3-hw[z],5,z,dark).fill(3+hw[z],5,z,3+hw[z],5,z,dark)}
+   g.fill(2,5,18,4,5,18,255).set(3,5,17,log).set(3,5,18,log).set(0,5,4,0); // bowsprit + gap in the rail for the gangplank
+   g.fill(1,5,0,5,7,5,dark).fill(2,5,1,4,7,4,0).fill(1,8,0,5,8,5,dark).set(3,5,5,0).set(3,6,5,0).set(2,5,1,chest).set(4,6,1,torch).set(4,5,1,barrel); // stern cabin
+   g.fill(1,9,9,5,15,9,black).fill(3,5,9,3,17,9,log).fill(0,16,9,6,16,9,log);                                                                             // main mast + black sail
+   g.fill(2,8,14,4,12,14,red).fill(3,5,14,3,13,14,log);for(const z of[3,12])g.set(3-hw[z],6,z,torch).set(3+hw[z],6,z,torch)}};
+ STRUCTURES.pirate_cove={kind:'complex',size:[57,30,57],below:12,spacing:224,chance:.9,tries:200,rooms:11,maxZ:29,underMaxZ:26,
+  pool:['hall','barracks','armory','store','captain','yard','cell','prison','vault','cstore'],
+  fixed:[['tower',23,-6,3,0],['pier',26,0,30,0],['ship',33,-4,33,0]],tp:[-4,22],
+  after(put){put(31,0,37,plank);put(32,0,37,plank)}}; // gangplank from the pier to the ship
+})();
+// -- where a pirate cove may stand: on a beach, with the sea in front (the canvas's +z side faces the water)
+function complexSite(name,D,gx,gz){if(GV<2)return null;const s=W.seed,sp=D.spacing,N=D.size[0];
+ for(let i=0;i<D.tries;i++){const px=gx*sp+(hash(gx,11+i,gz,s+210)*sp|0),pz=gz*sp+(hash(gx,12+i,gz,s+211)*sp|0);hgt(px,pz,s);if(ZN!=Z.BEACH)continue;
+  let best=null;for(let d=0;d<4;d++)for(let k=4;k<=64;k+=2){if(hgt(px+DV[d][0]*k,pz+DV[d][1]*k,s)<SEA-1){if(!best||k<best[0])best=[k,d];break}}
+  if(!best)continue;const[k,d]=best,ex=px+DV[d][0]*k,ez=pz+DV[d][1]*k;let rot=-1;
+  for(let r=0;r<4;r++){const a=rotXZ(0,0,N,N,r),b=rotXZ(0,1,N,N,r);if(b[0]-a[0]==DV[d][0]&&b[1]-a[1]==DV[d][1])rot=r}if(rot<0)continue;
+  const[ax,az]=rotXZ(N>>1,29,N,N,rot),ox=ex-ax,oz=ez-az;if(ox<gx*sp||oz<gz*sp||ox+N>gx*sp+sp||oz+N>gz*sp+sp)continue; // keep it inside its own cell
+  let ok=1;const at=(cx,cz)=>{const[rx,rz]=rotXZ(cx,cz,N,N,rot),h=hgt(ox+rx,oz+rz,s);return h};
+  for(const[cx,cz]of[[28,8],[10,8],[46,8],[10,22],[46,22],[28,22]]){const h=at(cx,cz);if(h<SEA||h>SEA+9||ZN==Z.RIVER||ZN==Z.LAKE||ZN==Z.MOUNTAIN){ok=0;break}}
+  if(ok&&at(28,50)>SEA)ok=0;if(!ok)continue;
+  return{name,x:ox,y:SEA+2,z:oz,rot}}
+ return null}
+// -- builds the whole complex once (cached on the structure): blocks per chunk, mobs, chests and the columns it covers
+function complexOf(st,D){if(st._cx)return st._cx;const N=D.size[0],H=D.size[1],B=D.below,V=H+B,rng=mkRng(hash(st.x,st.y,st.z,W.seed+777)*4294967296),vi=(x,y,z)=>x+z*N+(y+B)*N*N,
+  vol=new Uint8Array(N*N*V).fill(255),occ=new Uint8Array(N*N*V),fb=new Uint8Array(N*N),fy=new Int16Array(N*N),ents=[],chests=[],slots=[],cnt={},list=[];let nr=0;
+ const inb=(x,y,z)=>x>=0&&z>=0&&x<N&&z<N&&y>=-B&&y<H,put=(x,y,z,b)=>{if(inb(x,y,z))vol[vi(x,y,z)]=b},flag=(x,y,z,b)=>{if(x>=0&&z>=0&&x<N&&z<N){fb[x+z*N]=b;fy[x+z*N]=y}},
+  free=(x0,y0,z0,x1,y1,z1)=>{if(!inb(x0,y0,z0)||!inb(x1,y1,z1))return 0;for(let y=y0;y<=y1;y++)for(let z=z0;z<=z1;z++)for(let x=x0;x<=x1;x++)if(occ[vi(x,y,z)])return 0;return 1},
+  reserve=(x0,y0,z0,x1,y1,z1)=>{for(let y=Math.max(y0,-B);y<=Math.min(y1,H-1);y++)for(let z=Math.max(z0,0);z<=Math.min(z1,N-1);z++)for(let x=Math.max(x0,0);x<=Math.min(x1,N-1);x++)occ[vi(x,y,z)]=1},
+  grid=t=>t.grid||(t.grid=(g=>{t.build(g);return g})(new Grid(t.w,t.h,t.d))),
+  doorsOf=(t,x0,y0,z0,r)=>t.doors.map(([dx,dz,dir,ly,open])=>{const[ax,az]=rotXZ(dx,dz,t.w,t.d,r),[bx,bz]=rotXZ(dx+DV[dir][0],dz+DV[dir][1],t.w,t.d,r);return{x:x0+ax,z:z0+az,y:y0+ly,dir:DV.findIndex(v=>v[0]==bx-ax&&v[1]==bz-az),open,t}}),
+  carve=d=>{const p=DV[d.dir][0]?[0,1]:[1,0];for(let o=-1;o<=1;o++)for(let y=d.y;y<=d.y+2;y++)put(d.x+p[0]*o,y,d.z+p[1]*o,0)},
+  approach=d=>{const p=DV[d.dir][0]?[0,1]:[1,0],[dx,dz]=DV[d.dir];for(let i=1;i<=8;i++){const cx=d.x+dx*i,cz=d.z+dz*i,fl=i<=5?d.y-1:d.y-1-(i-5);for(let o=-1;o<=1;o++){const X=cx+p[0]*o,Z=cz+p[1]*o;put(X,fl,Z,57);flag(X,fl,Z,57);for(let y=fl+1;y<=d.y+3;y++)put(X,y,Z,0)}}
+   reserve(Math.min(d.x,d.x+dx*8)-1,d.y-4,Math.min(d.z,d.z+dz*8)-1,Math.max(d.x,d.x+dx*8)+1,d.y+3,Math.max(d.z,d.z+dz*8)+1)},
+  corridor=(sl,L)=>{const p=DV[sl.dir][0]?[0,1]:[1,0],[dx,dz]=DV[sl.dir],und=sl.y<0,fl=und?60:8,wl=und?60:58,rf=und?60:58;
+   for(let k=1;k<=L;k++){const cx=sl.x+dx*k,cz=sl.z+dz*k;for(let o=-2;o<=2;o++){const X=cx+p[0]*o,Z=cz+p[1]*o;for(let y=sl.y-1;y<=sl.y+3;y++)put(X,y,Z,y==sl.y-1?fl:y==sl.y+3?rf:Math.abs(o)==2?wl:0);if(!und)flag(X,sl.y-1,Z,57)}
+    if(k%3==2)put(cx+p[0],sl.y,cz+p[1],40)}},
+  stamp=(t,x0,y0,z0,r)=>{const g=grid(t);for(let y=0;y<t.h;y++)for(let z=0;z<t.d;z++)for(let x=0;x<t.w;x++){const v=g.a[x+z*t.w+y*t.w*t.d];if(v==255)continue;const[rx,rz]=rotXZ(x,z,t.w,t.d,r),X=x0+rx,Z=z0+rz;put(X,y0+y,Z,v);if(v==47)chests.push([X,y0+y,Z,t.loot]);if(y==0&&t.found)flag(X,y0,Z,57)}
+   for(const[px,pz]of g.piles){const[rx,rz]=rotXZ(px,pz,t.w,t.d,r);flag(x0+rx,y0,z0+rz,6)}
+   for(const[m,lx,ly,lz]of t.ents||[]){const[rx,rz]=rotXZ(lx,lz,t.w,t.d,r);ents.push([m,x0+rx,y0+ly,z0+rz])}},
+  place=(t,x0,y0,z0,r)=>{list.push(t.name+'@'+x0+','+y0+','+z0+'r'+r);stamp(t,x0,y0,z0,r);const[w2,d2]=r&1?[t.d,t.w]:[t.w,t.d];reserve(x0,y0,z0,x0+w2-1,y0+t.h-1,z0+d2-1);cnt[t.name]=(cnt[t.name]||0)+1;
+   const ds=doorsOf(t,x0,y0,z0,r);ds.forEach(d=>{if(d.open){carve(d);approach(d)}else slots.push(d)});return ds},
+  fits=(t,x0,y0,z0,r,sl,L)=>{const[w2,d2]=r&1?[t.d,t.w]:[t.w,t.d],zl=t.under?D.underMaxZ:D.maxZ;if(z0+d2-1>zl||!free(x0,y0,z0,x0+w2-1,y0+t.h-1,z0+d2-1))return 0;
+   const[dx,dz]=DV[sl.dir],ex=sl.x+dx*L,ez=sl.z+dz*L,wd=dx?[0,2]:[2,0];return free(Math.min(sl.x+dx,ex)-wd[0],sl.y-1,Math.min(sl.z+dz,ez)-wd[1],Math.max(sl.x+dx,ex)+wd[0],sl.y+3,Math.max(sl.z+dz,ez)+wd[1])},
+  attach=(sl,pool,force)=>{const und=sl.y<0,c=pool.filter(t=>!!t.under==und&&(cnt[t.name]||0)<(t.max??9)&&(force||(t.weight!==0&&(t.after||0)<=nr))).map(t=>[t,rng()*(t.weight||1)]).sort((a,b)=>b[1]-a[1]);
+   for(const[t]of c){const rs=[0,1,2,3];for(let i=3;i>0;i--){const j=rng()*(i+1)|0;[rs[i],rs[j]]=[rs[j],rs[i]]} // same shuffle in every browser, so everyone in a room sees the same building
+   for(const r of rs){const ds=doorsOf(t,0,0,0,r);for(let j=0;j<ds.length;j++){const dd=ds[j];if(dd.open||dd.dir!=OPP[sl.dir])continue;
+     const L=2+(rng()*3|0),x0=sl.x+DV[sl.dir][0]*(L+1)-dd.x,z0=sl.z+DV[sl.dir][1]*(L+1)-dd.z,y0=sl.y-dd.y;
+     if(!fits(t,x0,y0,z0,r,sl,L))continue;const[w2,d2]=r&1?[t.d,t.w]:[t.w,t.d],[dx,dz]=DV[sl.dir],wd=dx?[0,2]:[2,0],ex=sl.x+dx*L,ez=sl.z+dz*L;
+     reserve(Math.min(sl.x+dx,ex)-wd[0],sl.y-1,Math.min(sl.z+dz,ez)-wd[1],Math.max(sl.x+dx,ex)+wd[0],sl.y+3,Math.max(sl.z+dz,ez)+wd[1]);corridor(sl,L);
+     const nds=place(t,x0,y0,z0,r);carve(sl);carve(nds[j]);sl.used=nds[j].used=1;nr++;return 1}}}return 0};
+ Object.keys(ROOMS).forEach(k=>ROOMS[k].name=k);for(const[n,x,y,z,r]of D.fixed)place(ROOMS[n],x,y,z,r);
+ if(D.after)D.after(put);
+ const pool=D.pool.map(n=>ROOMS[n]);
+ for(let guard=0;nr<D.rooms&&guard<500;guard++){const live=slots.filter(s=>!s.used&&!s.dead);if(!live.length)break;const sl=live[rng()*live.length|0],due=pool.filter(t=>(t.min||0)>(cnt[t.name]||0)&&(t.after||0)<=nr);
+  if(due.length&&attach(sl,due,1))continue;if(attach(sl,pool))continue;sl.dead=1}
+ for(const t of pool)while((t.min||0)>(cnt[t.name]||0)){let done=0;for(const sl of slots)if(!sl.used&&attach(sl,[t],1)){done=1;break}if(!done)break} // required rooms that did not fit yet: try every free door
+ // ---- turn the canvas into blocks per chunk (rotated into the world), add foundations and piles, remember mobs / chests / covered columns
+ const bk=new Map(),L={bk,ents,rooms:list,chests:new Map(),cols:new Set()},colKey=(x,z)=>(x+4e6)*8e6+(z+4e6),cover=new Uint8Array(N*N),W2=(cx,cz)=>{const[rx,rz]=rotXZ(cx,cz,N,N,st.rot);return[st.x+rx,st.z+rz]},
+  emit=(x,y,z,b)=>{const k=(x>>4)+','+(y>>4)+','+(z>>4);let a=bk.get(k);if(!a)bk.set(k,a=[]);a.push(x,y,z,b)};
+ for(let y=-B;y<H;y++)for(let z=0;z<N;z++)for(let x=0;x<N;x++){const v=vol[vi(x,y,z)];if(v==255)continue;const[wx,wz]=W2(x,z);emit(wx,st.y+y,wz,v);cover[x+z*N]=1}
+ for(let z=0;z<N;z++)for(let x=0;x<N;x++){const b=fb[x+z*N];if(!b)continue;const[wx,wz]=W2(x,z),gh=hgt(wx,wz,W.seed);cover[x+z*N]=1;
+  for(let y=fy[x+z*N]-1;st.y+y>gh&&y>fy[x+z*N]-14;y--)if(y<-B||vol[vi(x,y,z)]==255)emit(wx,st.y+y,wz,b)}
+ for(let z=0;z<N;z++)for(let x=0;x<N;x++)if(cover[x+z*N])for(let a=-2;a<=2;a++)for(let b=-2;b<=2;b++)if(x+a>=0&&z+b>=0&&x+a<N&&z+b<N){const[wx,wz]=W2(x+a,z+b);L.cols.add(colKey(wx,wz))}
+ L.colKey=colKey;for(const[x,y,z,k]of chests){const[wx,wz]=W2(x,z);L.chests.set(wx+','+(st.y+y)+','+wz,k);(W.lootAt||(W.lootAt=new Map())).set(wx+','+(st.y+y)+','+wz,k)}
+ return st._cx=L}
+
 const rotXZ=(x,z,w,d,r)=>r==0?[x,z]:r==1?[d-1-z,x]:r==2?[w-1-x,d-1-z]:[z,w-1-x];
 function structAt(name,gx,gz){const k=name+':'+gx+','+gz;if(W.structs.has(k))return W.structs.get(k);const D=STRUCTURES[name],s=W.seed,h1=hash(gx,7,gz,s+200+name.length);let r=null;
- if(GP!='flat'){if(h1<D.chance){const[w,,dd]=D.size,x=gx*D.spacing+(hash(gx,8,gz,s+201)*(D.spacing-w)|0),z=gz*D.spacing+(hash(gx,9,gz,s+202)*(D.spacing-dd)|0),
+ if(GP!='flat'){if(D.kind=='complex'){if(h1<D.chance)r=complexSite(name,D,gx,gz)}else if(h1<D.chance){const[w,,dd]=D.size,x=gx*D.spacing+(hash(gx,8,gz,s+201)*(D.spacing-w)|0),z=gz*D.spacing+(hash(gx,9,gz,s+202)*(D.spacing-dd)|0),
   y=hgt(x+(w>>1),z+(dd>>1),s),zn=ZN;let ok=D.zones.includes(zn)&&y>SEA+1;
   for(const[a,b]of[[0,0],[w-1,0],[0,dd-1],[w-1,dd-1]])if(ok&&Math.abs(hgt(x+a,z+b,s)-y)>D.flat)ok=0;
   if(ok&&name!='village'){const vs=STRUCTURES.village.spacing;for(let a=-1;a<=1&&ok;a++)for(let b=-1;b<=1&&ok;b++){const v=structAt('village',Math.floor(x/vs)+a,Math.floor(z/vs)+b);if(v&&x+w>v.x-8&&x<v.x+38&&z+dd>v.z-8&&z<v.z+38)ok=0}} // keep lone houses out of villages
@@ -310,14 +461,14 @@ function structAt(name,gx,gz){const k=name+':'+gx+','+gz;if(W.structs.has(k))ret
 // call f(struct) for every structure that may touch the area x0..x1, z0..z1
 function eachStruct(x0,z0,x1,z1,f){for(const name in STRUCTURES){const sp=STRUCTURES[name].spacing;if(!sp)continue;for(let gz=Math.floor((z0-SMAX)/sp);gz<=Math.floor(z1/sp);gz++)for(let gx=Math.floor((x0-SMAX)/sp);gx<=Math.floor(x1/sp);gx++){const st=structAt(name,gx,gz);if(st)f(st,STRUCTURES[name])}}}
 // the pieces of a structure: itself, or (for villages) each part placed on the ground where it stands
-function partsOf(st,D){if(!D.parts)return[[st,D]];if(st._p)return st._p;return st._p=D.parts.map(([n,dx,dz,r])=>{const P2=STRUCTURES[n],[w,,d]=P2.size;
+function partsOf(st,D){if(D.kind=='complex')return[[st,{size:D.size,entities:complexOf(st,D).ents}]];if(!D.parts)return[[st,D]];if(st._p)return st._p;return st._p=D.parts.map(([n,dx,dz,r])=>{const P2=STRUCTURES[n],[w,,d]=P2.size;
  return[{name:n,x:st.x+dx,z:st.z+dz,rot:r,y:hgt(st.x+dx+(w>>1),st.z+dz+(d>>1),W.seed)},P2]})}
-function placeStruct(st,D,put){if(D.parts){for(const[a,b,c,d]of D.paths||[])for(let x=a;x<=c;x++)for(let z=b;z<=d;z++){const wx=st.x+x,wz=st.z+z,h=hgt(wx,wz,W.seed);if(h>SEA)put(wx,h,wz,15)}
+function placeStruct(st,D,put,ck){if(D.kind=='complex'){const f=a=>{for(let i=0;i<a.length;i+=4)put(a[i],a[i+1],a[i+2],a[i+3])},B=complexOf(st,D).bk;if(ck){const a=B.get(ck);if(a)f(a)}else B.forEach(f);return}if(D.parts){for(const[a,b,c,d]of D.paths||[])for(let x=a;x<=c;x++)for(let z=b;z<=d;z++){const wx=st.x+x,wz=st.z+z,h=hgt(wx,wz,W.seed);if(h>SEA)put(wx,h,wz,15)}
   for(const[p,PD]of partsOf(st,D))placeStruct(p,PD,put);return}
  const[w,,dd]=D.size;D.layers.forEach((L,ly)=>L.forEach((row,z)=>{for(let x=0;x<w;x++){const ch=row[x];if(ch==' ')continue;const[rx,rz]=rotXZ(x,z,w,dd,st.rot);
   put(st.x+rx,st.y+ly,st.z+rz,D.pal[ch]);if(ly==0&&D.foundation){const gh=hgt(st.x+rx,st.z+rz,W.seed);for(let y=st.y-1;y>gh-1&&y>st.y-12;y--)put(st.x+rx,y,st.z+rz,D.foundation)}}}))}
 const sWorld=(st,D,x,z)=>{const[w,,dd]=D.size,[rx,rz]=rotXZ(x,z,w,dd,st.rot);return[st.x+rx,st.z+rz]};
-function structSpawn(cx,cy,cz){eachStruct(cx*16,cz*16,cx*16+15,cz*16+15,(S0,D0)=>{for(const[st,D]of partsOf(S0,D0))for(const[m,x,y,z]of D.entities||[]){const[wx,wz]=sWorld(st,D,x,z),wy=st.y+y;
+function structSpawn(cx,cy,cz){eachStruct(cx*16,cz*16,cx*16+15,cz*16+15,(S0,D0)=>{for(const[st,D]of partsOf(S0,D0))for(const[m,x,y,z]of D.entities||[]){if(MOBS[m].hostile&&W.opt&&W.opt.monsters===false)continue;const[wx,wz]=sWorld(st,D,x,z),wy=st.y+y;
  if(wx>>4!=cx||wz>>4!=cz||wy>>4!=cy)continue;const hk=wx+','+wy+','+wz;if(ENT.some(e=>e.homeK==hk))continue;const e=spawnMob(m,wx+.5,wy,wz+.5);e.home=[wx+.5,wy,wz+.5];e.homeK=hk}})}
 // ores: a few veins per chunk; each vein is a short random walk that only replaces stone. [block, veins, max y, size]
 const ORES=[[16,14,1e9,9],[17,8,SEA+30,6],[18,3,SEA-10,5],[19,2,SEA-35,4]];
@@ -335,11 +486,15 @@ function gen(cx,cy,cz){const d=new Uint8Array(4096),s=W.seed,x0=cx*CS,y0=cy*CS,z
    else if(r<.2&&n2(wx/18,wz/18,s+43)>.45&&h+1>=y0&&h+1<y0+CS){d[x|z<<4|(h+1-y0)<<8]=48;any=1}}
   if(t==1&&(ZN==Z.FIELDS||ZN==Z.FOREST)&&h+1>=y0&&h+1<y0+CS){const r=hash(wx,3,wz,s+40),fl=ZN==Z.FIELDS?.035:.012,gr=ZN==Z.FIELDS?.2:.1; // flowers + tall grass
    if(r<gr){d[x|z<<4|(h+1-y0)<<8]=r<fl?29+(n2(wx/24,wz/24,s+41)*3|0):32;any=1}}}
- ores(d,cx,cy,cz,s);const SL=[];eachStruct(x0-4,z0-4,x0+CS+4,z0+CS+4,(st,D)=>{const m=Math.max(D.size[0],D.size[2]);SL.push([st.x-3,st.z-3,st.x+m+2,st.z+m+2])});
+ ores(d,cx,cy,cz,s);const SL=[],SC=[];eachStruct(x0-8,z0-8,x0+CS+8,z0+CS+8,(st,D)=>{if(D.kind=='complex'){SC.push(complexOf(st,D));return}const m=Math.max(D.size[0],D.size[2]);SL.push([st.x-3,st.z-3,st.x+m+2,st.z+m+2])});
  const put=(x,y,z,b,soft)=>{x-=x0;y-=y0;z-=z0;if(x<0||y<0||z<0||x>=CS||y>=CS||z>=CS)return;const i=x|z<<4|y<<8;if(!soft||!d[i]){d[i]=b;any=1}};
  if(y0<200&&y0+CS>SEA){
-  for(let tz=z0-2;tz<z0+CS+2;tz++)for(let tx=x0-2;tx<x0+CS+2;tx++){ // trees
-   const T=treeAt(tx,tz,s);if(!T||SL.some(([a,b,c,e])=>tx>=a&&tx<=c&&tz>=b&&tz<=e))continue; /* no trees in or right next to structures */const{t,h,top}=T,lg=[6,10,12][t],lf=[7,11,13][t];if(top+2<y0||h+1>=y0+CS)continue;
+  for(let tz=z0-4;tz<z0+CS+4;tz++)for(let tx=x0-4;tx<x0+CS+4;tx++){ // trees (palm fronds reach 3 blocks out)
+   const T=treeAt(tx,tz,s);if(!T||SL.some(([a,b,c,e])=>tx>=a&&tx<=c&&tz>=b&&tz<=e)||SC.some(C=>C.cols.has(C.colKey(tx,tz))))continue; /* no trees in or right next to structures */
+   if(T.t==3){const{h,n,sh,dx,dz,top}=T;if(top+3<y0||h+1>=y0+CS)continue;const of=j=>Math.floor(sh*j/n);for(let j=1;j<=n;j++)put(tx+dx*of(j),h+j,tz+dz*of(j),55);
+    const px=tx+dx*of(n),pz=tz+dz*of(n),y=h+n,lv=(a,b,c)=>put(px+a,y+b,pz+c,56,1);lv(0,1,0); // crown: fronds spread out and droop at the tips
+    for(const[a,b]of[[1,0],[-1,0],[0,1],[0,-1]]){lv(a,0,b);lv(a,1,b);lv(2*a,1,2*b);lv(3*a,0,3*b)}for(const[a,b]of[[1,1],[1,-1],[-1,1],[-1,-1]]){lv(a,1,b);lv(2*a,0,2*b)}continue}
+   const{t,h,top}=T,lg=[6,10,12][t],lf=[7,11,13][t];if(top+2<y0||h+1>=y0+CS)continue;
    const lay=(y,r)=>{for(let dz=-r;dz<=r;dz++)for(let dx=-r;dx<=r;dx++){if(r==2&&Math.abs(dx)==2&&Math.abs(dz)==2)continue;put(tx+dx,y,tz+dz,lf,1)}};
    if(t<2)for(let y=top-2;y<=top+1;y++)lay(y,y>=top?1:2);                       // oak / birch: round crown
    else for(let y=h+3;y<=top+1;y++){const k=top+1-y;lay(y,k==0?0:k<=2?1:k%2?1:2)} // fir: layered cone
@@ -347,7 +502,7 @@ function gen(cx,cy,cz){const d=new Uint8Array(4096),s=W.seed,x0=cx*CS,y0=cy*CS,z
   for(let gz=Math.floor(z0/48);gz<=Math.floor((z0+CS)/48);gz++)for(let gx=Math.floor(x0/48);gx<=Math.floor((x0+CS)/48);gx++) // springs
    for(const[px,pz,lo,hi]of spring(gx,gz))if(px>=x0&&px<x0+CS&&pz>=z0&&pz<z0+CS&&hi>=y0&&lo<y0+CS){put(px,lo,pz,5,1);schedule(px,lo,pz,2)}}
  if(W.hg)for(const[hx,hy,hz]of W.hg)if(hx>=x0&&hx<x0+CS&&hz>=z0&&hz<z0+CS)put(hx,hy,hz,47); // hunger games chests
- eachStruct(x0,z0,x0+CS-1,z0+CS-1,(st,D)=>{if(!D.parts&&(st.y+D.size[1]<y0||st.y-12>=y0+CS))return;placeStruct(st,D,(x,y,z,b)=>put(x,y,z,b))}); // structures
+ eachStruct(x0,z0,x0+CS-1,z0+CS-1,(st,D)=>{if(D.kind=='complex'){if(st.y+D.size[1]<y0||st.y-D.below>=y0+CS)return;placeStruct(st,D,(x,y,z,b)=>put(x,y,z,b),cx+','+cy+','+cz);return}if(!D.parts&&(st.y+D.size[1]<y0||st.y-12>=y0+CS))return;placeStruct(st,D,(x,y,z,b)=>put(x,y,z,b))}); // structures
  const e=W.edits.get(cx+','+cy+','+cz);if(e){e.forEach((b,i)=>d[i]=b);any=1}
  const c={x:cx,y:cy,z:cz,d:any?d:null,m:null,w:null};torchSrc(c);hmChunk(c);W.chunks.set(cx+','+cy+','+cz,c);W.dirty.add(c);mapChunk(c);if(W.local){natSpawn(cx,cy,cz);structSpawn(cx,cy,cz)}
  const pk=cx+','+cy+','+cz,pu=BU.pend.get(pk);if(pu){BU.pend.delete(pk);pu.forEach(k=>BU.q.set(k,BU.tick+1))}
@@ -4219,6 +4374,186 @@ const TEXTURES=[
    '0120',
    '2012',
    '1020'
+  ]},
+ {id:243,name:'palm_log_side',width:16,height:16,
+  palette:['#4a3b2a', '#6f5d46', '#85725a', '#5b4a36', '#977f66', '#2f2418'],
+  data:[
+   '3443334433434334',
+   '2300131110111114',
+   '4212032012231224',
+   '2110121012211124',
+   '3334433334434334',
+   '4113022222111024',
+   '4111221010122222',
+   '4002102100101214',
+   '3333343334333434',
+   '4132112111201322',
+   '2211020231023214',
+   '2100211122011324',
+   '4443443434334343',
+   '4112232010002222',
+   '4110121311220202',
+   '4310012031331112'
+  ]},
+ {id:244,name:'palm_log_top',width:16,height:16,
+  palette:['#9a7f58', '#a98d63', '#8c7350', '#b59a70', '#7a6244'],
+  data:[
+   '2222222222222222',
+   '2331113114331112',
+   '2400330333033032',
+   '2304141441144012',
+   '2131303000001032',
+   '2134304041130042',
+   '2404010003000042',
+   '2300300140000032',
+   '2334010100401032',
+   '2101010000001342',
+   '2301044111001032',
+   '2101000003301032',
+   '2300411441410012',
+   '2300000000030312',
+   '2331111434313332',
+   '2222222222222222'
+  ]},
+ {id:245,name:'palm_leaves',width:16,height:16,
+  palette:['#1c6b22', '#2a8a2e', '#3aa83a', '#52c24a', '#2f9a35', '#6fd85e'],
+  data:[
+   '220.1532222.2014',
+   '4340.52212242443',
+   '31.5.114.0155001',
+   '0.1412241152.2.2',
+   '.113..5111210311',
+   '1011021003121.31',
+   '1404143211.10342',
+   '.02121212043.4.1',
+   '13.....4.1120030',
+   '1331211201441023',
+   '3003...0.0253.20',
+   '4.21131105332240',
+   '4100131121.11352',
+   '323151351134410.',
+   '1201052.2.4.1323',
+   '32012024003210.3'
+  ]},
+ {id:246,name:'sandstone',width:16,height:16,
+  palette:['#dccf94', '#e4d8a2', '#cdbd7e', '#c2b172', '#b8a866'],
+  data:[
+   '2222222222222222',
+   '2220122220221010',
+   '4421424422220140',
+   '0211113010211212',
+   '4001441102044444',
+   '0144244410201410',
+   '0041104210004002',
+   '1402424212021442',
+   '0110120032313222',
+   '2014441444424414',
+   '4044404044004244',
+   '1040404442414144',
+   '2200224401420440',
+   '1121113002211220',
+   '2012120200111220',
+   '2222222222222222'
+  ]},
+ {id:247,name:'dark_planks',width:16,height:16,
+  palette:['#2e1d10', '#3d2615', '#4b301b', '#1f130a'],
+  data:[
+   '3333333333333333',
+   '2222220121201011',
+   '2002202020020022',
+   '2211021221100011',
+   '3333333333333333',
+   '0112211110222202',
+   '1102020222121202',
+   '2202011212121000',
+   '3333333333333333',
+   '1200212012110221',
+   '2022122102112221',
+   '1211102221110022',
+   '3333333333333333',
+   '1221121102211211',
+   '0201121212221221',
+   '2211022112202111'
+  ]},
+ {id:248,name:'gold_block',width:16,height:16,
+  palette:['#f2cf3e', '#ffe574', '#dfb52a', '#b58a17', '#fff3b0'],
+  data:[
+   '3333333333333333',
+   '3110001010101103',
+   '3110110112001103',
+   '3001021010221113',
+   '3120010102410103',
+   '3000021014002103',
+   '3000200140202213',
+   '3101110410010013',
+   '3000104002002103',
+   '3000040101220103',
+   '3001420000041013',
+   '3022002101410003',
+   '3001101001021103',
+   '3101222011022013',
+   '3001011010101013',
+   '3333333333333333'
+  ]},
+ {id:249,name:'stone_bricks',width:16,height:16,
+  palette:['#858585', '#929292', '#767676', '#5c5c5c'],
+  data:[
+   '3333333333333333',
+   '3001011031010012',
+   '3001211230200002',
+   '3333333333333333',
+   '0111310002103110',
+   '2201312202013201',
+   '0221320211123211',
+   '3333333333333333',
+   '3333333333333333',
+   '3021220132010002',
+   '3001201132220112',
+   '3333333333333333',
+   '2000301100113122',
+   '1120322221103100',
+   '0010300010213001',
+   '3333333333333333'
+  ]},
+ {id:250,name:'barrel_side',width:16,height:16,
+  palette:['#8c5c2e', '#9d6c38', '#6a4320', '#3d3d3d', '#5f5f5f', '#7a4e26'],
+  data:[
+   '2050210025012111',
+   '2010200020502005',
+   '3333333333333333',
+   '4444444444444444',
+   '2010210121152100',
+   '2510251125002501',
+   '2011251120012105',
+   '2110200020002150',
+   '2001250120012001',
+   '2001201020002101',
+   '2115200020112050',
+   '2105205125102510',
+   '3333333333333333',
+   '4444444444444444',
+   '2111200121012111',
+   '2000201021112001'
+  ]},
+ {id:251,name:'barrel_top',width:16,height:16,
+  palette:['#9d6c38', '#aa7a42', '#6a4320', '#3d3d3d', '#5f5f5f', '#8c5c2e'],
+  data:[
+   '3333333333333333',
+   '3222222222222223',
+   '3210050110110023',
+   '3211100015110123',
+   '3200110000010523',
+   '3250010010101523',
+   '3200010005001023',
+   '3210150110055023',
+   '3215010011100523',
+   '3211051010101023',
+   '3201010111101023',
+   '3205005010100523',
+   '3205510000150023',
+   '3210011001105023',
+   '3222222222222223',
+   '3333333333333333'
   ]}
 ];
 const BLOCKS={ // block id -> texture ids
@@ -4255,7 +4590,9 @@ const BLOCKS={ // block id -> texture ids
  51:{name:'Smithing table',top:165,side:166,bottom:10},
  52:{name:'Loom',top:167,side:168,bottom:10},
  53:{name:'Fletching table',top:169,side:170,bottom:10},
- 54:{name:'Furnace',faces:[172,172,173,173,172,171]}
+ 54:{name:'Furnace',faces:[172,172,173,173,172,171]},
+ 55:{name:'Palm log',top:244,side:243,bottom:244},56:{name:'Palm leaves',all:245},57:{name:'Sandstone',all:246},58:{name:'Dark planks',all:247},
+ 59:{name:'Gold block',all:248},60:{name:'Stone bricks',all:249},61:{name:'Barrel',top:251,side:250,bottom:251}
 };
 for(let i=21;i<=28;i++)BLOCKS[i]={name:'Water',all:6}; // flowing water levels (not in hotbar)
 /* == TEXTURE ENGINE == decoding + atlas (you normally don't need to touch this) */
@@ -4453,7 +4790,7 @@ function lodTile(tx,tz,S2){const st=S2/32,n=32,N=n+2,x0=tx*S2,z0=tz*S2,s=W.seed,
   for(const[a,b,o]of[[1,0,.8],[-1,0,.8],[0,1,.7],[0,-1,.7]]){const edge=a>0&&i==n||a<0&&i==1||b>0&&j==n||b<0&&j==1;let nh=E[q+a+b*N]+1;if(edge&&T[q]!=5)nh=Math.min(nh,Y-2*st);if(nh>=Y)continue; // tile edges get a skirt so tiles of different sizes never leave cracks
    const wx=a>0?X+st:X,wz=b>0?Z+st:Z;if(a)quad([wx,nh,Z],[wx,Y,Z],[wx,Y,Z+st],[wx,nh,Z+st],cl[1],o);else quad([X,nh,wz],[X,Y,wz],[X+st,Y,wz],[X+st,nh,wz],cl[1],o)}}
  if(!big)for(let z=z0;z<z0+S2;z++)for(let x=x0;x<x0+S2;x++){const t=treeAt(x,z,s);if(!t||okc(x,z,t.h,t.top+2))continue; // near tiles: every real tree as a simple crown
-  const lf=[7,11,13][t.t],col=sc(LOD.col[lf][0],lf,zoneAt(x,z,s)),w=t.t==2?1:2;box(x-w,t.h+(t.t==2?3:t.top-t.h-2),z-w,x+1+w,t.top+2,z+1+w,col);if(t.t<2)box(x+.3,t.h+1,z+.3,x+.7,t.top-2,z+.7,LOD.col[[6,10,12][t.t]][1])}
+  const lf=[7,11,13,56][t.t],col=sc(LOD.col[lf][0],lf,zoneAt(x,z,s)),w=t.t==2?1:2;box(x-w,t.h+(t.t==2?3:t.top-t.h-2),z-w,x+1+w,t.top+2,z+1+w,col);if(t.t!=2)box(x+.3,t.h+1,z+.3,x+.7,t.top-2,z+.7,LOD.col[[6,10,12,55][t.t]][1])}
  if(!ix.length)return null;const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(p,3));g.setAttribute('color',new THREE.Float32BufferAttribute(c,3));g.setIndex(ix);g.computeBoundingSphere();
  const m=new THREE.Mesh(g,mL);m.matrixAutoUpdate=false;scene.add(m);return m}
 /* == SKY + DAY/NIGHT == a sky dome (gradient shader with sunrise/sunset glow), square sun and moon, stars at night.
@@ -4620,17 +4957,18 @@ const RECIPES=[[8,4,[[6,1]]],[8,4,[[10,1]]],[8,4,[[12,1]]],[104,4,[[8,2]]],[50,1
  [156,1,[[104,3],[108,3]],'fletch'],[157,1,[[104,3],[108,2],[105,1]],'fletch'],[158,4,[[104,1],[160,1],[3,1]],'fletch']];
 [8,3,105,106,103].forEach((mat,mi)=>[[3,2],[3,2],[1,2],[2,1]].forEach(([n,st],ti)=>RECIPES.push([120+mi*4+ti,1,[[mat,n],[104,st]],'smith'])));
 AMAT.forEach((m,mi)=>ACOST.forEach((n,pi)=>RECIPES.push([140+mi*4+pi,1,[[m[2],n]],'smith'])));
+RECIPES.push([8,4,[[55,1]]],[57,4,[[4,4]],'craft'],[60,4,[[3,4]],'craft'],[61,1,[[8,6]],'craft'],[58,4,[[8,2],[102,1]],'craft'],[59,1,[[106,9]],'craft'],[106,9,[[59,1]],'craft']); // v0.17 blocks
 const STATIONS={50:['craft','Crafting table'],51:['smith','Smithing table'],52:['loom','Loom'],53:['fletch','Fletching table'],54:['furnace','Furnace']};
 /* MINING (survival): time = hardness x 1.5 / tool speed. Wrong/no tool = slower; blocks in NEED only drop with a good enough pickaxe. */
-const HARD={50:2.5,51:2.5,52:2.5,53:2.5,54:3.5,47:2.5,48:0,49:0,40:0,41:0,42:0,43:0,44:0,45:0,46:0,1:.6,2:.5,3:1.5,4:.5,5:1e9,6:2,7:.2,8:2,9:.2,10:2,11:.2,12:2,13:.2,14:.8,15:.6,16:3,17:3,18:3,19:3},NEED={3:0,16:0,17:1,18:2,19:2,54:0};
-const TCLASS=b=>[3,16,17,18,19,54].includes(b)?0:[6,8,10,12,47,50,51,52,53].includes(b)?1:[1,2,4,9,15].includes(b)?2:-1;
+const HARD={50:2.5,51:2.5,52:2.5,53:2.5,54:3.5,47:2.5,48:0,49:0,40:0,41:0,42:0,43:0,44:0,45:0,46:0,1:.6,2:.5,3:1.5,4:.5,5:1e9,6:2,7:.2,8:2,9:.2,10:2,11:.2,12:2,13:.2,14:.8,15:.6,16:3,17:3,18:3,19:3,55:2,56:.2,57:.8,58:2,59:3,60:1.5,61:1.5},NEED={3:0,16:0,17:1,18:2,19:2,54:0,57:0,59:2,60:0};
+const TCLASS=b=>[3,16,17,18,19,54,57,59,60].includes(b)?0:[6,8,10,12,47,50,51,52,53,55,58,61].includes(b)?1:[1,2,4,9,15].includes(b)?2:-1;
 const heldTool=()=>{const s=INV.s[slot];return s&&ITEMS[s.id]&&ITEMS[s.id].tool};
 function breakInfo(b){const h=PL(b)?0:HARD[b]??.8,t=heldTool(),good=t&&t.t==TCLASS(b),need=NEED[b],ok=need==null||t&&t.t==0&&TMAT[t.m][2]>=need;
  return{time:h*(ok?1.5:5)/(good?TMAT[t.m][1]:1),drop:ok}}
 const dmgHeld=()=>{const t=heldTool();return!t?2:t.t==3?TMAT[t.m][3]:3};
 const isBlockItem=id=>!!BLOCKS[id]&&!(id>=21&&id<=28),itemName=id=>(BLOCKS[id]||ITEMS[id]||{name:'?'}).name;
 const itemTex=id=>BLOCKS[id]?iconTex(id):ITEMS[id]?ITEMS[id].tex:-1,iconURL=id=>texURL(itemTex(id));
-const DROP={1:2,5:0,7:0,11:0,13:0,16:102,19:103,48:0},dropOf=b=>b in DROP?DROP[b]:b>=21&&b<=28?0:b; // what a broken block drops (grass -> dirt, leaves -> nothing)
+const DROP={1:2,5:0,7:0,11:0,13:0,56:0,16:102,19:103,48:0},dropOf=b=>b in DROP?DROP[b]:b>=21&&b<=28?0:b; // what a broken block drops (grass -> dirt, leaves -> nothing)
 const INV={s:Array(36).fill(null),a:Array(4).fill(null),cur:null},creative=()=>!!W&&W.gm=='creative',canFly=()=>creative()||!!(W&&W.fly);
 function invReset(gm){INV.s.fill(null);INV.cur=null;if(gm=='creative')[1,2,3,4,6,8,9,10,12].forEach((id,i)=>INV.s[i]={id,n:64})}
 function addItem(id,n){for(const pass of[0,1])for(let i=0;i<36&&n>0;i++){const s=INV.s[i];
@@ -4775,7 +5113,7 @@ function hungerLoot(sp){const L=[[121,3],[125,2],[123,1],[100,8],[101,6],[40,16]
  addMsg('Hunger Games: loot is scattered at the centre. Stay inside the wall and survive the night!','#ffb347')}
 /* == CHESTS == W.chests["x,y,z"] = 27 slots. A chest from a structure gets its loot the first time it is opened. */
 let CHK=null; // open chest key
-function chestSlots(k){let c=W.chests[k];if(!c){c=W.chests[k]=Array(27).fill(null);const[x,y,z]=k.split(',').map(Number),L=W.hgSet&&W.hgSet.has(k)?LOOT.hunger:LOOT.house;let i=0;
+function chestSlots(k){let c=W.chests[k];if(!c){c=W.chests[k]=Array(27).fill(null);const[x,y,z]=k.split(',').map(Number),L=W.hgSet&&W.hgSet.has(k)?LOOT.hunger:LOOT[W.lootAt&&W.lootAt.get(k)]||LOOT.house;let i=0;
   for(const[id,a,b,ch]of L){if(hash(x+i,y,z,W.seed+300)<ch){const n=a+(hash(x,y+i,z,W.seed+301)*(b-a+1)|0);let sl=hash(x,y,z+i,W.seed+302)*27|0;while(c[sl])sl=(sl+1)%27;c[sl]={id,n}}i++}}return c}
 function openChest(x,y,z){CHK=x+','+y+','+z;chestSlots(CHK);unlockTo('inv');renderInv()}
 function chestBroken(x,y,z){const k=x+','+y+','+z,c=W.chests[k];if(c){c.forEach(s=>{if(s)dropItem(s.id,s.n,x+.5,y+.5,z+.5)});delete W.chests[k]}}
@@ -4993,9 +5331,9 @@ cmd(['zone'],'/zone',[],(a,o)=>o('Zone here: '+ZNAME[P.y+1.6<hgt(Math.floor(P.x)
 cmd(['structure'],'/structure <name> — build one in front of you',[()=>Object.keys(STRUCTURES)],(a,o,e)=>{const D=STRUCTURES[a[0]];if(!D)return e('Structures: '+Object.keys(STRUCTURES).join(', '));
  const st={name:a[0],x:Math.floor(P.x)+2,y:Math.floor(P.y)-1,z:Math.floor(P.z)+2,rot:0};placeStruct(st,D,(x,y,z,b)=>{if(gb(x,y,z)!=b){if(b==47)delete W.chests[x+','+y+','+z];edit(x,y,z,b)}});
  for(const[p,PD]of partsOf(st,D))for(const[m,x,y,z]of PD.entities||[]){const[wx,wz]=sWorld(p,PD,x,z),ee=spawnMob(m,wx+.5,p.y+y,wz+.5);ee.home=[wx+.5,p.y+y,wz+.5]}o('Built '+a[0])});
-cmd(['locate'],'/locate <zone|structure> [tp]',[()=>[...AC.zone(),...Object.keys(STRUCTURES).filter(k=>STRUCTURES[k].spacing)],()=>['tp']],(a,o,e)=>{if(STRUCTURES[a[0]]&&STRUCTURES[a[0]].spacing){const D=STRUCTURES[a[0]],sp=D.spacing,g0x=Math.floor(P.x/sp),g0z=Math.floor(P.z/sp);let best=null; // nearest structure
+cmd(['locate'],'/locate <zone|structure> [tp]',[()=>[...AC.zone(),...Object.keys(STRUCTURES).filter(k=>STRUCTURES[k].spacing)],()=>['tp']],(a,o,e)=>{if(STRUCTURES[a[0]]&&STRUCTURES[a[0]].spacing){const D=STRUCTURES[a[0]],sp=D.spacing;if(D.kind=='complex'&&GV<2)return e('This world was made before v0.17, so it has no pirate coves. Make a new world, or build one with /structure '+a[0]);const g0x=Math.floor(P.x/sp),g0z=Math.floor(P.z/sp);let best=null; // nearest structure
   for(let r=0;r<30&&!best;r++)for(let gz=g0z-r;gz<=g0z+r;gz++)for(let gx=g0x-r;gx<=g0x+r;gx++){if(Math.max(Math.abs(gx-g0x),Math.abs(gz-g0z))!=r)continue;const st=structAt(a[0],gx,gz);if(st&&(!best||Math.hypot(st.x-P.x,st.z-P.z)<Math.hypot(best.x-P.x,best.z-P.z)))best=st}
-  if(!best)return e('None nearby');o(`${a[0]} at ${best.x} ${best.y} ${best.z} (${Math.hypot(best.x-P.x,best.z-P.z)|0} blocks away)`);if(a[1]=='tp'){const c=D.parts?[best.x+D.size[0]/2,best.z+D.size[2]/2+3]:[best.x-1.5,best.z-1.5];Object.assign(P,{x:c[0],y:hgt(Math.floor(c[0]),Math.floor(c[1]),W.seed)+2,z:c[1],vx:0,vy:0,vz:0,fresh:1})}return}
+  if(!best)return e('None nearby');o(`${a[0]} at ${best.x} ${best.y} ${best.z} (${Math.hypot(best.x-P.x,best.z-P.z)|0} blocks away)`);if(a[1]=='tp'){const c=D.kind=='complex'?(q=>[best.x+q[0]+.5,best.z+q[1]+.5])(rotXZ(D.tp[0],D.tp[1],D.size[0],D.size[2],best.rot)):D.parts?[best.x+D.size[0]/2,best.z+D.size[2]/2+3]:[best.x-1.5,best.z-1.5];Object.assign(P,{x:c[0],y:Math.max(hgt(Math.floor(c[0]),Math.floor(c[1]),W.seed),D.kind=='complex'?best.y:0)+2,z:c[1],vx:0,vy:0,vz:0,fresh:1})}return}
  const zi=ZNAME.findIndex(z=>z.toLowerCase().replace(/ /g,'_')==(a[0]||'').toLowerCase());if(zi<0||zi>7)return e('Zones: '+AC.zone().join(', ')+', or a structure: '+Object.keys(STRUCTURES).join(', '));
  for(let r=16;r<6000;r+=16)for(let k=0;k<6.28;k+=16/r){const x=Math.round(P.x+Math.cos(k)*r),z=Math.round(P.z+Math.sin(k)*r);if(zoneAt(x,z,W.seed)==zi){const h=Math.max(hgt(x,z,W.seed),SEA);o(`${ZNAME[zi]} at ${x} ${h+1} ${z} (${r} blocks away)`);if(a[1]=='tp')Object.assign(P,{x:x+.5,y:h+2,z:z+.5,vx:0,vy:0,vz:0,fresh:1});return}}e('None found within 6000 blocks')});
 cmd(['spawn'],'/spawn',[],(a,o)=>{Object.assign(P,{x:W.spawn[0],y:W.spawn[1],z:W.spawn[2],vx:0,vy:0,vz:0,fresh:1});o('Back at spawn')});
@@ -5117,7 +5455,7 @@ function openHost(pub){if(net.role!='solo')return;if(!online())return toast(OFF)
  peer.on('open',()=>{net={role:'host',peer,code,pub,conns:new Map(),iv:pub?setInterval(beat,5000):0};if(pub)beat();toast('Room code: '+code);updPause()});
  peer.on('connection',c=>{c.on('data',d=>{if(!d)return;
   if(d.t=='hi'&&!others.has(c.peer)){const name=String(d.name||'Player').slice(0,16);
-   c.send({t:'init',seed:W.seed,wname:W.name,gm:W.gm,time:W.time,preset:W.preset,opt:W.opt,border:W.border,spawn:W.spawn,edits:flat(),players:[{id:'host',name:S.name,skin:MYSKIN},...[...others].map(([id,o])=>({id,name:o.name,skin:o.skin}))]});
+   c.send({t:'init',seed:W.seed,wname:W.name,gm:W.gm,time:W.time,preset:W.preset,gv:GV,opt:W.opt,border:W.border,spawn:W.spawn,edits:flat(),players:[{id:'host',name:S.name,skin:MYSKIN},...[...others].map(([id,o])=>({id,name:o.name,skin:o.skin}))]});
    bcast({t:'j',id:c.peer,name,skin:d.skin});net.conns.set(c.peer,c);addO(c.peer,name,d.skin);const r=W.ranks[name]||W.joinRank||'player';others.get(c.peer).rank=r;c.send({t:'rank',r});addMsg(`${name} joined (${r})`,'#ff8');updPause()}
   else if(d.t=='cmd'&&typeof d.line=='string'){const o=others.get(c.peer),say=(m,col)=>c.send({t:'c',n:'Server',m});if(!o||rk(o.rank)<2)return say('You need admin rank for commands');runCmd(d.line.slice(0,300),say,say,c.peer);addMsg(`[${o.name}: /${d.line.slice(0,80)}]`,'#aaa')}
   else if(d.t=='p'&&okP(d.p)){const o=others.get(c.peer);if(o)o.t=d.p}
@@ -5132,7 +5470,7 @@ function joinRoom(code){code=String(code).trim().toUpperCase();if(!code)return;c
  peer.on('open',()=>{const c=peer.connect('vxl-'+code,{reliable:true});
   c.on('open',()=>c.send({t:'hi',name:S.name,skin:MYSKIN}));
   c.on('data',d=>{if(!d)return;
-   if(d.t=='init'&&!done){done=1;startGame({seed:d.seed|0,name:d.wname,time:+d.time||0,border:d.border&&isFinite(d.border.r)?{x:+d.border.x,z:+d.border.z,r:+d.border.r}:null,preset:['normal','amplified','islands','flat','hunger'].includes(d.preset)?d.preset:'normal',opt:d.opt,spawn:Array.isArray(d.spawn)?d.spawn:null,gm:d.gm=='creative'?'creative':'survival',edits:d.edits||[]},'client');net.hc=c;net.code=code;(d.players||[]).forEach(p=>addO(String(p.id),String(p.name).slice(0,16),p.skin));show('pause');updPause()}
+   if(d.t=='init'&&!done){done=1;startGame({seed:d.seed|0,gv:d.gv==2?2:1,name:d.wname,time:+d.time||0,border:d.border&&isFinite(d.border.r)?{x:+d.border.x,z:+d.border.z,r:+d.border.r}:null,preset:['normal','amplified','islands','flat','hunger'].includes(d.preset)?d.preset:'normal',opt:d.opt,spawn:Array.isArray(d.spawn)?d.spawn:null,gm:d.gm=='creative'?'creative':'survival',edits:d.edits||[]},'client');net.hc=c;net.code=code;(d.players||[]).forEach(p=>addO(String(p.id),String(p.name).slice(0,16),p.skin));show('pause');updPause()}
    else if(W&&net.hc===c){if(d.t=='s'&&typeof d.tm=='number')W.time=d.tm;if(d.t=='s'&&'bd' in d){if(Array.isArray(d.bd)&&d.bd.every(Number.isFinite)){const nb=!W.border||W.border.x!=d.bd[0]||W.border.z!=d.bd[1];W.border={x:d.bd[0],z:d.bd[1],r:d.bd[2]};if(nb)setBorder()}else if(!d.bd&&W.border){W.border=null;setBorder()}}
     if(d.t=='ti')title(d.a,d.b,1);if(d.t=='e'&&okE(d))sb(d.x,d.y,d.z,d.b);else if(d.t=='rank'&&RANKS.includes(d.r)){net.rank=d.r;addMsg('Your rank: '+d.r,'#ff8');updPause()}else if(d.t=='c'&&typeof d.m=='string')addMsg(`<${String(d.n).slice(0,16)}> ${d.m.slice(0,200)}`);else if(d.t=='j')addO(String(d.id),String(d.name).slice(0,16),d.skin);else if(d.t=='skin'){const o=others.get(String(d.id));if(o){const n=o.name,t=o.t;delO(String(d.id));addO(String(d.id),n,d.skin);others.get(String(d.id)).t=t}}else if(d.t=='l')delO(d.id);
     else if(d.t=='s'&&d.p)for(const id in d.p){const o=others.get(id);if(o&&okP(d.p[id]))o.t=d.p[id]}}});
@@ -5251,13 +5589,13 @@ function saveWorldForm(w,back){const a=wl(),i=a.findIndex(x=>x.id==w.id),ch={nam
  if(i>=0){Object.assign(a[i],ch);localStorage.vx_w=JSON.stringify(a)}if(W&&W.id==w.id){Object.assign(W,ch);hearts();toast('World settings saved')}back?back():go('play')}
 function newWorld(){let sd=$('#wsd').value.trim(),n=$('#wn').value.trim()||'World '+(wl().length+1),seed;
  if(!sd)seed=Math.random()*1e6|0;else if(/^-?\d+$/.test(sd))seed=+sd|0;else{seed=0;for(const c of sd)seed=Math.imul(seed,31)+c.charCodeAt(0)|0}
- const w={id:Date.now(),name:n,seed,edits:[],pos:null,gm:$('#wgm').value,preset:$('#wpre').value,opt:formOpt(),joinRank:$('#wjr').value,time:+$('#wtime').value,ranks:{}};
+ const w={id:Date.now(),name:n,seed,gv:2,edits:[],pos:null,gm:$('#wgm').value,preset:$('#wpre').value,opt:formOpt(),joinRank:$('#wjr').value,time:+$('#wtime').value,ranks:{}};
  localStorage.vx_w=JSON.stringify([...wl(),w]);startGame(w,'solo',1)}
 // spawn: spiral out from 0,0 to the first grass column on dry land with no tree on or next to it, then stand on top
 function findSpawn(s){for(const want of[Z.FIELDS,Z.FOREST])for(let r=0;r<2000;r+=3)for(let a=0;a<6.28;a+=r?3/r:7){const x=Math.round(Math.cos(a)*r),z=Math.round(Math.sin(a)*r),h=hgt(x,z,s);
  if(ZN!=want||surf(x,z,h,s)!=1||hgt(x+1,z,s)>h+1||hgt(x-1,z,s)>h+1||hgt(x,z+1,s)>h+1||hgt(x,z-1,s)>h+1)continue;let tree=0; /* flat-ish grass, no tree nearby */for(let i=-3;i<=3&&!tree;i++)for(let j=-3;j<=3;j++)if(treeAt(x+i,z+j,s)){tree=1;break}if(!tree)return[x+.5,h+1,z+.5]}
  return[.5,hgt(0,0,s)+2,.5]}
-function startGame(d,role,gesture){HM.clear();LC.clear();GP=d.preset||'normal';if(W)W.chunks.forEach(rmc);CL.cx=1e9;if(CL.m){scene.remove(CL.m,CL.md);CL.m=CL.md=null}lodClear();clearO();clearEnt();
+function startGame(d,role,gesture){HM.clear();LC.clear();GP=d.preset||'normal';GV=d.gv==2?2:1;if(W)W.chunks.forEach(rmc);CL.cx=1e9;if(CL.m){scene.remove(CL.m,CL.md);CL.m=CL.md=null}lodClear();clearO();clearEnt();
  W={id:d.id,name:d.name||'World',seed:d.seed,chunks:new Map(),edits:new Map(),dirty:new Set(),urg:new Set(),springs:new Map(),structs:new Map(),local:role!='client'};lk='';
  W.gm=d.gm||'creative';W.preset=GP;W.opt=Object.assign({mobs:true,monsters:true,cycle:true,seasons:true},d.opt||{});W.joinRank=d.joinRank||'player';W.ranks=Object.assign({},d.ranks||{});chLoad(d.chests);W.time=typeof d.time=='number'?d.time:.02;W.se=null;W.fly=!!d.fly;invLoad(d.inv,W.gm);armLoad(d.arm);P.hp=d.hp||20;P.dead=0;P.fy=null;slot=d.slot|0;buildBar();P.sprintT=0; // worlds made before v0.8 have no game mode: creative
  mapLoad(d.map);BU.q.clear();BU.pend.clear();(d.upd||[]).forEach(k=>BU.q.set(String(k),BU.tick+5));
@@ -5268,7 +5606,7 @@ function startGame(d,role,gesture){HM.clear();LC.clear();GP=d.preset||'normal';i
  if(d.pos)Object.assign(P,{x:d.pos[0],y:d.pos[1],z:d.pos[2],yaw:d.pos[3]||0,fresh:1}); // always re-check: climbs out if something was built where you stand
  $('#msgs').textContent='';addMsg('Press '+kname(S.keys.chat)+' to chat, / for commands (/help). '+(W.gm=='creative'?'Creative':'Survival')+' mode.','#aaa');
  hearts();armorBar();document.body.classList.add('ingame');net.role=role=='client'?'client':'solo';$('#hud').style.display='block';if(gesture){show('');lock()}}
-function save(){if(!W||!W.local)return;const a=wl(),i=a.findIndex(x=>x.id==W.id),o={...(i>=0?a[i]:{}),id:W.id,name:W.name,seed:W.seed,edits:flat(),pos:[P.x,P.y,P.z,P.yaw],map:mapSave(),border:W.border,time:W.time,hp:P.hp,arm:armSave(),chests:chSave(),preset:W.preset,opt:W.opt,joinRank:W.joinRank,ranks:W.ranks,spawn:W.spawn,gm:W.gm,fly:W.fly,inv:invSave(),slot,upd:[...BU.q.keys(),...[...BU.pend.values()].flatMap(p=>[...p])]};i<0?a.push(o):a[i]=o;try{localStorage.vx_w=JSON.stringify(a)}catch(e){toast('Save failed (storage full?)')}}
+function save(){if(!W||!W.local)return;const a=wl(),i=a.findIndex(x=>x.id==W.id),o={...(i>=0?a[i]:{}),id:W.id,name:W.name,seed:W.seed,edits:flat(),pos:[P.x,P.y,P.z,P.yaw],map:mapSave(),border:W.border,time:W.time,hp:P.hp,arm:armSave(),chests:chSave(),preset:W.preset,gv:GV,opt:W.opt,joinRank:W.joinRank,ranks:W.ranks,spawn:W.spawn,gm:W.gm,fly:W.fly,inv:invSave(),slot,upd:[...BU.q.keys(),...[...BU.pend.values()].flatMap(p=>[...p])]};i<0?a.push(o):a[i]=o;try{localStorage.vx_w=JSON.stringify(a)}catch(e){toast('Save failed (storage full?)')}}
 function quit(){save();closeNet();clearEnt();if(W)W.chunks.forEach(rmc);lodClear();W=null;free=0;locked=false;document.body.classList.remove('ingame');$('#hud').style.display='none';document.exitPointerLock();show('menu')}
 setInterval(save,15000);addEventListener('beforeunload',save);
 function updPause(){const b=$('#hb');b.textContent='';$('#quit').textContent=net.role=='client'?'Leave room':'Save & quit';
