@@ -1,16 +1,15 @@
 # Cubora
 
-A voxel sandbox game that runs in the browser. Explore an endless world of oceans, rivers, forests and mountains, build in creative mode or survive the night in survival, and play with friends over peer-to-peer multiplayer. No install, no build step, no server.
+A voxel sandbox game that runs in the browser. Explore an endless generated world, build freely in creative mode or survive in survival, and play with friends over peer-to-peer multiplayer. No install, no build step, no server.
 
-- Infinite 3D world: caves, ores, rivers, lakes, beaches, villages and pirate coves
-- Survival (health, mining times, tools, armour, crafting stations, food) and creative
-- Mobs: animals, villagers you can trade with, zombies, skeletons, spiders and creepers at night
-- Day/night cycle, seasons, coloured torch light, clouds, far-terrain rendering
-- Flowing water, chests, bows and crossbows, a world map and minimap
-- Texture editor: repaint any texture (texture pack) or paint your own skin
-- Peer-to-peer multiplayer with room codes, public rooms and player ranks
+- Endless 3D world with varied terrain, caves and generated structures
+- Survival and creative modes, with crafting, tools and armour
+- Animals, friendly characters to trade with, and monsters at night
+- Day/night cycle, seasons and dynamic lighting
+- Built-in texture and skin editor
+- Peer-to-peer multiplayer with room codes and player ranks
 - Touch controls for phones and tablets
-- 45+ chat commands (`/help`)
+- Chat commands (`/help`)
 
 ## Running the game
 
@@ -58,8 +57,8 @@ js/
     settings.js          settings screen and key bindings
   world/
     terrain.js           noise, zones, terrain height, trees, caves, gb() block lookup
-    structures.js        STRUCTURES (houses, villages) and their placement
-    complex-structures.js  multi-room buildings (ROOMS, jigsaw layout, pirate cove)
+    structures.js        STRUCTURES and their placement
+    complex-structures.js  multi-room buildings (ROOMS, jigsaw layout)
     generator.js         gen() builds a chunk; sb() sets a block; saved edits
     block-updates.js     scheduled block updates: water flow, plants and torches popping off
   data/
@@ -80,7 +79,7 @@ js/
     items.js             items, tools, armour, inventory, crafting, mining rules
     camera.js            first-person hand, third-person views, screenshots
     health.js            health, fall damage, death and respawn
-    border.js            world border (Hunger Games) and on-screen titles
+    border.js            world border (Arena preset) and on-screen titles
     chests.js, trading.js, projectiles.js
     entities.js          mobs and dropped items: AI, physics, spawning
     ranks.js             guest / player / admin / host permissions
@@ -133,7 +132,7 @@ The smoke test opens the game in a headless browser, creates a world and checks 
 
 ## Save compatibility
 
-Saves from the single-file version keep working: storage keys (`vx_w`, `vx_set`, `vx_pack`) and the multiplayer room ids are unchanged, and worlds made before the beach/pirate-cove update keep their original terrain.
+Saves from the single-file version keep working: storage keys (`vx_w`, `vx_set`, `vx_pack`) and the multiplayer room ids are unchanged, and worlds made with the older terrain generator keep their original terrain.
 
 ## License
 

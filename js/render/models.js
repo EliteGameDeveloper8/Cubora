@@ -65,7 +65,7 @@ const limb = (px, py, pz, w, h, d, fc) => {
   p.add(tbox(w, h, d, fc, 0, -h / 2, 0));
   return p;
 }; // pivot at the top
-// Minecraft-like player: 32 px tall = 1.8 blocks. Head 8px, body 12x8x4, arms/legs 12x4x4.
+// Humanoid player: 32 px tall = 1.8 blocks. Head 8px, body 12x8x4, arms/legs 12x4x4.
 const SKIN = { head: [100, 100, 99, 107, 99, 98], arm: [104, 104, 103, 106, 104, 104] },
   ZSKIN = { head: [123, 123, 123, 126, 123, 122], arm: [124, 124, 103, 125, 124, 124] },
   VSKIN = {

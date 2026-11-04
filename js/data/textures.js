@@ -4237,7 +4237,7 @@ const TEXTURES = [
   },
   {
     id: 226,
-    name: 'creeper_head',
+    name: 'blaster_head',
     width: 8,
     height: 8,
     palette: ['#4caf3a', '#5ec44a', '#3a8f2c', '#1b1b1b', '#7ad860', '#2a6a20'],
@@ -4245,7 +4245,7 @@ const TEXTURES = [
   },
   {
     id: 227,
-    name: 'creeper_face',
+    name: 'blaster_face',
     width: 8,
     height: 8,
     palette: ['#4caf3a', '#5ec44a', '#3a8f2c', '#1b1b1b', '#7ad860', '#2a6a20'],
@@ -4253,7 +4253,7 @@ const TEXTURES = [
   },
   {
     id: 228,
-    name: 'creeper_body',
+    name: 'blaster_body',
     width: 8,
     height: 12,
     palette: ['#4caf3a', '#5ec44a', '#3a8f2c', '#1b1b1b', '#7ad860', '#2a6a20'],
@@ -4274,7 +4274,7 @@ const TEXTURES = [
   },
   {
     id: 229,
-    name: 'creeper_side',
+    name: 'blaster_side',
     width: 4,
     height: 12,
     palette: ['#4caf3a', '#5ec44a', '#3a8f2c', '#1b1b1b', '#7ad860', '#2a6a20'],
@@ -4282,7 +4282,7 @@ const TEXTURES = [
   },
   {
     id: 230,
-    name: 'creeper_top',
+    name: 'blaster_top',
     width: 8,
     height: 4,
     palette: ['#4caf3a', '#5ec44a', '#3a8f2c', '#1b1b1b', '#7ad860', '#2a6a20'],
@@ -4290,7 +4290,7 @@ const TEXTURES = [
   },
   {
     id: 231,
-    name: 'creeper_leg',
+    name: 'blaster_leg',
     width: 4,
     height: 6,
     palette: ['#4caf3a', '#5ec44a', '#3a8f2c', '#1b1b1b', '#7ad860', '#2a6a20'],

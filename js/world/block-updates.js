@@ -35,7 +35,7 @@ function tickUpdates(dt) {
     }
   }
 }
-// like Minecraft, spreading water only heads toward the nearest drop within 4 blocks (all ways if there is none)
+// spreading water only heads toward the nearest drop within 4 blocks (all ways if there is none)
 const pass = (x, y, z) => {
     const b = gb(x, y, z);
     return b == 0 || (b >= 21 && b <= 28);

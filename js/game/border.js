@@ -1,7 +1,7 @@
 /*
  * World border and titles.
  * W.border = {x, z, r} plus, while shrinking, {to, rate}. You can't walk out of it. /border sets one in any world;
- * the Hunger Games preset starts with one and shrinks it automatically (HG_AUTO).
+ * the Arena preset starts with one and shrinks it automatically (HG_AUTO).
  * title() shows big text above the hotbar (sent to everyone when you host).
  */
 
@@ -38,9 +38,9 @@ function setBorder() {
   borderMesh.userData.r0 = W.border.r;
   scene.add(borderMesh);
 }
-/* BORDER: W.border = {x, z, r (radius), to + rate (while shrinking, blocks per second), auto (Hunger Games timer)}.
-   You can't walk out of it. /border sets one in any world; Hunger Games starts shrinking after AUTO.at seconds. */
-const HG_AUTO = { at: 300, warn: 60, to: 24, dur: 360 }; // Hunger Games: shrink starts 5 min in, takes 6 min, ends at radius 24
+/* BORDER: W.border = {x, z, r (radius), to + rate (while shrinking, blocks per second), auto (Arena timer)}.
+   You can't walk out of it. /border sets one in any world; Arena starts shrinking after AUTO.at seconds. */
+const HG_AUTO = { at: 300, warn: 60, to: 24, dur: 360 }; // Arena: shrink starts 5 min in, takes 6 min, ends at radius 24
 function borderFrame(dt) {
   if (!W.border) return;
   const b = W.border;
@@ -77,7 +77,7 @@ function borderFrame(dt) {
   }
   borderMesh.material.opacity = Math.max(0.05, 0.6 - (b.r - d) / 40);
 } // the wall shows more as you get close
-/* TITLES: big text above the hotbar (title + optional subtitle), like Minecraft's /title. Sent to everyone when you host. */
+/* TITLES: big text above the hotbar (title + optional subtitle). Sent to everyone when you host. */
 let titleT = 0;
 function title(a, b, from) {
   const t = $('#title');
@@ -111,5 +111,5 @@ function hungerLoot(sp) {
       }),
     1500,
   );
-  addMsg('Hunger Games: loot is scattered at the centre. Stay inside the wall and survive the night!', '#ffb347');
+  addMsg('Arena: loot is scattered at the centre. Stay inside the wall and survive the night!', '#ffb347');
 }

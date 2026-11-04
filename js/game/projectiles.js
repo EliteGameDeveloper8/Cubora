@@ -1,6 +1,6 @@
 /*
  * Projectiles: arrows from bows, crossbows and skeletons. They fly with gravity, stick in blocks
- * (you can pick your own back up) and hurt the first mob or player they touch. explode() is the creeper blast.
+ * (you can pick your own back up) and hurt the first mob or player they touch. explode() is the blaster's blast.
  * Bow: hold right mouse to draw, release to shoot. Crossbow: right click loads, right click again fires.
  */
 

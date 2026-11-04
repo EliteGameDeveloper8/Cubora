@@ -37,7 +37,7 @@ const ENT = [],
         [158, 0, 2],
       ],
     },
-    creeper: { hp: 20, w: 0.3, h: 1.65, model: 'creeper', hostile: 1, creeper: 1, speed: 2.4, drops: [[161, 0, 2]] },
+    blaster: { hp: 20, w: 0.3, h: 1.65, model: 'blaster', hostile: 1, blaster: 1, speed: 2.4, drops: [[161, 0, 2]] },
     cow: {
       hp: 10,
       w: 0.45,
@@ -216,7 +216,7 @@ function spawnMob(type, x, y, z) {
     ENT.push(e);
     return e;
   }
-  if (M.model == 'creeper') {
+  if (M.model == 'blaster') {
     const g = new THREE.Group(),
       q = 1 / 16,
       legs = [];
@@ -448,7 +448,7 @@ function mobTick(e, dt) {
         td = d;
       }
     }
-    if (!M.creeper)
+    if (!M.blaster)
       for (const v of ENT)
         if (v.vil && !v.dead) {
           const d = Math.hypot(v.x - e.x, v.z - e.z);
@@ -475,7 +475,7 @@ function mobTick(e, dt) {
           shootArrow(e.x, e.y + 1.5, e.z, tg.x, tg.y + 1.1, tg.z, xb ? 30 : 20, xb ? 6 : M.dmg, e);
         }
       } // bow/crossbow users keep distance and shoot // skeleton: keep distance and shoot
-      else if (M.creeper) {
+      else if (M.blaster) {
         if (td < 2.6) {
           e.walk = 0;
           e.fuse += dt;
@@ -492,7 +492,7 @@ function mobTick(e, dt) {
         const t = e.held && ITEMS[e.held] && ITEMS[e.held].tool;
         hitIt(M.dmg + (t ? (t.t == 3 ? TMAT[t.m][3] - 2 : 2) : 0)); // held tools hit harder
       }
-    } else if (M.creeper) e.fuse = Math.max(0, e.fuse - dt);
+    } else if (M.blaster) e.fuse = Math.max(0, e.fuse - dt);
     if (
       M.burns &&
       DL > 0.75 &&
@@ -732,7 +732,7 @@ function monsterTick(dt) {
     )
       continue;
     const rr = Math.random();
-    spawnMob(rr < 0.4 ? 'zombie' : rr < 0.65 ? 'skeleton' : rr < 0.85 ? 'spider' : 'creeper', x + 0.5, h + 1, z + 0.5);
+    spawnMob(rr < 0.4 ? 'zombie' : rr < 0.65 ? 'skeleton' : rr < 0.85 ? 'spider' : 'blaster', x + 0.5, h + 1, z + 0.5);
     break;
   }
 }

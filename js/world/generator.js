@@ -184,7 +184,7 @@ function gen(cx, cy, cz) {
           }
   }
   if (W.hg)
-    for (const [hx, hy, hz] of W.hg) if (hx >= x0 && hx < x0 + CS && hz >= z0 && hz < z0 + CS) put(hx, hy, hz, 47); // hunger games chests
+    for (const [hx, hy, hz] of W.hg) if (hx >= x0 && hx < x0 + CS && hz >= z0 && hz < z0 + CS) put(hx, hy, hz, 47); // arena chests
   eachStruct(x0, z0, x0 + CS - 1, z0 + CS - 1, (st, D) => {
     if (D.kind == 'complex') {
       if (st.y + D.size[1] < y0 || st.y - D.below >= y0 + CS) return;

@@ -30,7 +30,7 @@ function renderWorlds() {
     const r = document.createElement('div'),
       s = document.createElement('span');
     r.className = 'row';
-    s.textContent = `${w.name}  ·  ${{ normal: 'Normal', amplified: 'Amplified', islands: 'Islands', flat: 'Superflat', hunger: 'Hunger Games' }[w.preset || 'normal']} · ${w.gm == 'survival' ? 'Survival' : 'Creative'}`;
+    s.textContent = `${w.name}  ·  ${{ normal: 'Normal', amplified: 'Amplified', islands: 'Islands', flat: 'Superflat', hunger: 'Arena' }[w.preset || 'normal']} · ${w.gm == 'survival' ? 'Survival' : 'Creative'}`;
     s.title = 'Seed ' + w.seed;
     r.append(
       s,
@@ -206,7 +206,7 @@ function startGame(d, role, gesture) {
         : null;
   W.hg = null;
   W.hgSet = null;
-  /* Hunger Games: 24 loot chests spread over the arena */
+  /* Arena: 24 loot chests spread over the arena */
   if (GP == 'hunger') {
     W.hg = [];
     for (let i = 0; i < 24; i++) {
